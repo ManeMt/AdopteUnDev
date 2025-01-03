@@ -198,4 +198,8 @@ class Company
 
         return $this;
     }
+    public function getJodAddssssss(): Collection
+    {
+        
+}
 }
