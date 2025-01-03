@@ -3,9 +3,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,22 +14,37 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'attr' => [
+                    'placeholder' => 'Entrez votre adresse email',
+                ]
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => 'Mot de passe',
+                'attr' => [
+                    'placeholder' => 'Entrez votre mot de passe',
+                ]
+            ])
             ->add('roles', ChoiceType::class, [
+                'label' => 'Rôle utilisateur',
                 'choices' => [
                     'Développeur' => 'ROLE_DEV',
                     'Entreprise' => 'ROLE_COMPANY',
                 ],
-                'multiple' => true,
-                'expanded' => true,
+                'multiple' => true, // Permet de sélectionner plusieurs rôles
+                'expanded' => true, // Affiche les options sous forme de cases à cocher
+                'attr' => [
+                    'class' => 'roles-checkbox',
+                ]
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => User::class, // Lie ce formulaire à l'entité User
         ]);
     }
 }
+
