@@ -31,9 +31,9 @@ class RegistrationController extends AbstractController
             $user->setPassword($hashedPassword);
 
             $roles = $form->get('roles')->getData();
-            if (!is_array($roles)) {
-                $roles = [$roles]; // Ensure it's an array
-            }
+            // if (!is_array($roles)) {
+            //     $roles = [$roles]; // Ensure it's an array
+            // }
             $user->setRoles($roles);
 
             $em->persist($user);
