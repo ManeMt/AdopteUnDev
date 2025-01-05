@@ -23,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type: 'json')]
-    private array $roles= [];
+    private array $roles; //= []
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Developer $developer = null;
