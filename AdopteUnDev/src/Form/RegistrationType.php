@@ -32,12 +32,14 @@ class RegistrationType extends AbstractType
                     'Développeur' => 'ROLE_DEV',
                     'Entreprise' => 'ROLE_COMPANY',
                 ],
-                'multiple' => true, // Permet de sélectionner plusieurs rôles
-                'expanded' => true, // Affiche les options sous forme de cases à cocher
+                'multiple' => false,
+                'expanded' => true, 
                 'attr' => [
-                    'class' => 'roles-checkbox',
-                ]
+                    'class' => 'roles-radio',
+                ],
+            
             ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
