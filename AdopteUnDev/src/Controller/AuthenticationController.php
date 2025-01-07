@@ -24,6 +24,33 @@ class AuthenticationController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/profile', name: 'app_profile')]
+    public function profile()
+    {
+        $user = $this->getUser();
+        if(!$user){
+            return null;
+        }
+
+        $viewFile = 'index.html.twig';
+        $viewDir = 'devs';
+        if(in_array('ROLE_COMPANY',$user->getRoles())){
+            $viewDir = 'companies';
+        }
+        // if(! $user->isCompleteProfile()){
+        //       $viewFile = 'edit.html.twig';
+        // }
+        // if (in_array('ROLE_DEV',$user->getRoles())) {
+          
+        // } else if (in_array('ROLE_COMPANY',$user->getRoles())) {
+        //     return $this->render("profiles/companies/$viewFile");
+        // } else {
+           
+        // }
+        return $this->render("profiles/$viewDir/$viewFile");
+    }
+
+
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
