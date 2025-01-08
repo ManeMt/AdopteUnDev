@@ -2,61 +2,60 @@
 
 namespace App\Form;
 
-use App\Entity\Developer;
+use App\Entity\JobAdd;
+use App\Entity\Location;
 use App\Entity\ProgramingLanguage;
+use App\Entity\Company;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DeveloperType extends AbstractType
+class JobAddType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName', TextType::class, [
-                'label' => 'First Name',
-                'required' => true,
-            ])
-            ->add('lastName', TextType::class, [
-                'label' => 'Last Name',
-                'required' => true,
-            ])
-            ->add('minSalary', NumberType::class, [
-                'label' => 'Minimum Salary',
-                'required' => true,
+            ->add('postTitle', TextType::class, [
+                'label' => 'Job Title',
             ])
             ->add('level', IntegerType::class, [
                 'label' => 'Level',
-                'required' => true,
             ])
-            ->add('biography', TextareaType::class, [
-                'label' => 'Biography',
-                'required' => true,
+            ->add('salary', NumberType::class, [
+                'label' => 'Salary',
+                'scale' => 2, // To handle decimal values
             ])
-            ->add('avatar', FileType::class, [
-                'label' => 'Avatar (optional)',
-                'required' => false,
-                'mapped' => false, // Prevents Doctrine from handling the file directly
+            ->add('description', TextareaType::class, [
+                'label' => 'Job Description',
+            ])
+            ->add('location', EntityType::class, [
+                'class' => Location::class,
+                'choice_label' => 'name',
+                'label' => 'Location',
             ])
             ->add('programingLanguages', EntityType::class, [
                 'class' => ProgramingLanguage::class,
                 'choice_label' => 'entitled',
                 'multiple' => true,
-                'expanded' => false,
+                'expanded' => false, // Display checkboxes for multiple languages
                 'label' => 'Programming Languages',
+            ])
+            ->add('company', EntityType::class, [
+                'class' => Company::class,
+                'choice_label' => 'name',
+                'label' => 'Company',
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Developer::class,
+            'data_class' => JobAdd::class,
         ]);
     }
 }

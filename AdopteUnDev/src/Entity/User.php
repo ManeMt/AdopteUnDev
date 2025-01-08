@@ -28,6 +28,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Developer $developer = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Company $companies = null;
     #[ORM\Column(type: 'boolean', options: ["default" => false])]
     private ?bool $completeProfile = false;
 
@@ -106,6 +108,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function getCompany(): ?Company
+    {
+        return $this->companies;
+    }
+    public function setCompany(Company $companies): static
+    {
+        if ($companies->getUser() !== $this) {
+            $companies->setUser($this);
+        }
+
+        $this->developer = $companies;
+
+        return $this;
+    }
+
+
+
     public function eraseCredentials(): void
     {
         // Si vous stockez des informations sensibles supplémentaires, vous pouvez les effacer ici.
