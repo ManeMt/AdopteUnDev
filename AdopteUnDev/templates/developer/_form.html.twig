@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.minSalary) }}
+        {{ form_widget(form.minSalary, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.level) }}
+        {{ form_widget(form.level, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.biography) }}
+        {{ form_widget(form.biography, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.avatar) }}
+        {{ form_widget(form.avatar, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.programingLanguages) }}
+        {{ form_widget(form.programingLanguages, {'attr': {'class': 'form-check'}}) }}
+    </div>
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
