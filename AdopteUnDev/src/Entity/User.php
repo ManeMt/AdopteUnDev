@@ -28,6 +28,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Developer $developer = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Company $companies = null;
+    #[ORM\Column(type: 'boolean', options: ["default" => false])]
+    private ?bool $completeProfile = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +97,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function isCompleteProfile(): ?bool
+    {
+        return $this->completeProfile;
+    }
+
+    public function setCompleteProfile(bool $completeProfile): static
+    {
+        $this->completeProfile = $completeProfile;
+
+        return $this;
+    }
+    public function getCompany(): ?Company
+    {
+        return $this->companies;
+    }
+    public function setCompany(Company $companies): static
+    {
+        if ($companies->getUser() !== $this) {
+            $companies->setUser($this);
+        }
+
+        $this->developer = $companies;
+
+        return $this;
+    }
+
+
 
     public function eraseCredentials(): void
     {
@@ -106,5 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // Cette méthode peut être vide si vous utilisez des algorithmes modernes (comme bcrypt ou argon2)
         return null;
     }
+
+    
 }
 

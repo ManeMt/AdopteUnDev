@@ -40,9 +40,9 @@ class JobAddType extends AbstractType
             ])
             ->add('programingLanguages', EntityType::class, [
                 'class' => ProgramingLanguage::class,
-                'choice_label' => 'name',
+                'choice_label' => 'entitled',
                 'multiple' => true,
-                'expanded' => true, // Display checkboxes for multiple languages
+                'expanded' => false, // Display checkboxes for multiple languages
                 'label' => 'Programming Languages',
             ])
             ->add('company', EntityType::class, [

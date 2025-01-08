@@ -46,9 +46,9 @@ class DeveloperType extends AbstractType
             ])
             ->add('programingLanguages', EntityType::class, [
                 'class' => ProgramingLanguage::class,
-                'choice_label' => 'name',
+                'choice_label' => 'entitled',
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Programming Languages',
             ]);
     }
