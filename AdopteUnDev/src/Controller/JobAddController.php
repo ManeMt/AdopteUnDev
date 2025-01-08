@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/job/add')]
 final class JobAddController extends AbstractController
@@ -27,6 +28,7 @@ final class JobAddController extends AbstractController
     {
         $jobAdd = new JobAdd();
         $form = $this->createForm(JobAddType::class, $jobAdd);
+        // $jobAdd->setCompany($userInterface->getCompanies());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
