@@ -17,7 +17,7 @@ final class CompanyController extends AbstractController{
     #[Route(name: 'app_company_index', methods: ['GET'])]
     public function index(CompanyRepository $companyRepository): Response
     {
-        return $this->render('profiles/companies/index.html.twig', [
+        return $this->render('companies/index.html.twig', [
             'companies' => $companyRepository->findAll(),
         ]);
     }
@@ -37,7 +37,7 @@ final class CompanyController extends AbstractController{
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('profiles/companies/new.html.twig', [
+        return $this->render('companies/new.html.twig', [
             'company' => $company,
             'form' => $form,
         ]);
@@ -46,7 +46,7 @@ final class CompanyController extends AbstractController{
     #[Route('/{id}', name: 'app_company_show', methods: ['GET'])]
     public function show(Company $company): Response
     {
-        return $this->render('profiles/companies/show.html.twig', [
+        return $this->render('companies/show.html.twig', [
             'company' => $company,
         ]);
     }
@@ -63,7 +63,7 @@ final class CompanyController extends AbstractController{
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('profiles/companies/edit.html.twig', [
+        return $this->render('companies/edit.html.twig', [
             'company' => $company,
             'form' => $form,
         ]);
