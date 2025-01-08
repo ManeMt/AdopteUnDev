@@ -1,43 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html.twig' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdopteUnDev</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/alphabet-icon.png') }}">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
-
-    <!-- Material Icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}" />
-
-    <!-- Selectize CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}" />
-
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/nice-select.css') }}" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-</head>
-
-<body>
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
-            </div>
-        </div>
-    </div>
-    <!-- Loader -->
+    
+{% block header %} {% endblock %}
+{% block body %}
 
     <!-- Back to Home Button -->
     <div class="back-to-home rounded d-none d-sm-block">
@@ -55,7 +20,7 @@
                         <div class="col-md-6">
                             <div class="login_page bg-white shadow rounded p-4">
                                 <div class="text-center">
-                                    <h4 class="mb-4">Signup</h4>
+                                    <h4 class="mb-4">Inscription</h4>
                                 </div>
 
                                 {# Affiche les messages flash #}
@@ -93,28 +58,27 @@
             </div>
             {{ form_errors(form.roles) }}
         </div>
-
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
+        <br>
+        <div class="col-lg-12 mb-0 mt-3">
+            <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
+        </div>
+        {# <button type="submit" style="margin-top: 30px" class="btn btn-primary">S'inscrire</button> #}
         
         {{ form_end(form) }}
-        </div>
+         <div class="col-lg-12 mt-4 text-center">
+                                            <h6>Se connecter avec</h6>
+                                            <ul class="list-unstyled social-icon mb-0 mt-3">
+                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="Facebook"></i></a></li>
+                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-google-plus" title="Google"></i></a></li>
+                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-github-circle" title="Github"></i></a></li>
+                                            </ul><!--end icon-->
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">J'ai déjà un compte</small> <a href="{{ path('app_login') }}" class="text-dark font-weight-bold">Se connecter</a></p>
+                                        </div>
     </section><!--end section-->
     <!-- Hero End -->
 
-    <!-- JavaScript -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/plugins.js') }}"></script>
+{% endblock %}
+{% block footer %} {% endblock %}
 
-    <!-- Selectize JS -->
-    <script src="{{ asset('js/selectize.min.js') }}"></script>
-
-    <!-- Nice Select JS -->
-    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-
-    <!-- App JS -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
-
-</html>
