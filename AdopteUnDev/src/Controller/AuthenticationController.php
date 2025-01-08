@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthenticationController extends AbstractController
@@ -37,17 +38,14 @@ class AuthenticationController extends AbstractController
         $viewDir = 'devs';
         if(in_array('ROLE_COMPANY',$user->getRoles())){
             $viewDir = 'companies';
+            if(!$user->isCompleteProfile()){
+                return $this->redirectToRoute("app_company_new");
+            }
         }
         if(!$user->isCompleteProfile()){
-              $viewFile = 'edit.html.twig';
+            return $this->redirectToRoute("app_developer_new");
         }
-        // if (in_array('ROLE_DEV',$user->getRoles())) {
-          
-        // } else if (in_array('ROLE_COMPANY',$user->getRoles())) {
-        //     return $this->render("profiles/companies/$viewFile");
-        // } else {
-           
-        // }
+
         return $this->render("profiles/$viewDir/$viewFile");
     }
 

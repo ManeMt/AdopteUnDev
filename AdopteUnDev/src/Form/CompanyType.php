@@ -58,7 +58,7 @@ class CompanyType extends AbstractType
             ])
             ->add('location', EntityType::class, [
                 'class' => Location::class,
-                'choice_label' => 'name',
+                'choice_label' => 'entitled',
                 'label' => 'Location',
             ])
         ;

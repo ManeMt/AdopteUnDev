@@ -56,7 +56,7 @@
                         </div>
                         <div class="float-right">
                             <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                                <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.username : 'Guest' }}</a></li>
+                                {# <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.getusername() : 'Guest' }}</a></li> #}
                                 <li class="list-inline-item">
                                     <select id="select-lang" class="demo-default">
                                         <option value="">Language</option>
@@ -169,6 +169,20 @@
         {% endblock %}
         {% block body %}{% endblock %}
        
+        <!-- JavaScript -->
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+            <script src="{{ asset('js/plugins.js') }}"></script>
+
+            <!-- Selectize JS -->
+            <script src="{{ asset('js/selectize.min.js') }}"></script>
+
+            <!-- Nice Select JS -->
+            <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+
+            <!-- App JS -->
+            <script src="{{ asset('js/app.js') }}"></script>
           
 
 {% block footer %}
@@ -225,20 +239,5 @@
         </footer>
         <!-- footer end -->
     {% endblock %}
-
-     <!-- JavaScript -->
-            <script src="{{ asset('js/jquery.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-            <script src="{{ asset('js/plugins.js') }}"></script>
-
-            <!-- Selectize JS -->
-            <script src="{{ asset('js/selectize.min.js') }}"></script>
-
-            <!-- Nice Select JS -->
-            <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-
-            <!-- App JS -->
-            <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
