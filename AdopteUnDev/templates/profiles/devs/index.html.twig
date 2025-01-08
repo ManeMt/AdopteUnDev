@@ -1,20 +1,59 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% if app.user %}
-    <h1>Hello {{ app.user.email }}!</h1>
-{% else %}
-    <h1>Hello Guest!</h1>
-{% endif %}
-    </body>
-</html>
+{% block title %}Developer Index{% endblock %}
+
+{% block body %}
+    <h1>Developer Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Min Salary</th>
+                <th>Level</th>
+                <th>Biography</th>
+                <th>Avatar</th>
+                <th>Programming Languages</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for developer in developers %}
+            <tr>
+                <td>{{ developer.id }}</td>
+                <td>{{ developer.firstName }}</td>
+                <td>{{ developer.lastName }}</td>
+                <td>{{ developer.minSalary }}</td>
+                <td>{{ developer.level }}</td>
+                <td>{{ developer.biography }}</td>
+                <td>
+                    {% if developer.avatar %}
+                        <img src="{{ asset('uploads/avatars/' ~ developer.avatar) }}" alt="Avatar" style="max-width: 50px;">
+                    {% else %}
+                        No avatar
+                    {% endif %}
+                </td>
+                <td>
+                    {% for language in developer.programingLanguages %}
+                        <span class="badge bg-info text-dark">{{ language.entitled }}</span>
+                    {% else %}
+                        No languages
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_developer_show', {'id': developer.id}) }}" class="btn btn-info btn-sm">Show</a>
+                    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_developer_new') }}" class="btn btn-success">Create new</a>
+{% endblock %}

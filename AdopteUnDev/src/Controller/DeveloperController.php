@@ -17,7 +17,7 @@ final class DeveloperController extends AbstractController{
     #[Route(name: 'app_developer_index', methods: ['GET'])]
     public function index(DeveloperRepository $developerRepository): Response
     {
-        return $this->render('developer/index.html.twig', [
+        return $this->render('profiles/devs/index.html.twig', [
             'developers' => $developerRepository->findAll(),
         ]);
     }
@@ -37,7 +37,7 @@ final class DeveloperController extends AbstractController{
             return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('developer/new.html.twig', [
+        return $this->render('profiles/devs/new.html.twig', [
             'developer' => $developer,
             'form' => $form,
         ]);
@@ -46,7 +46,7 @@ final class DeveloperController extends AbstractController{
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
     public function show(Developer $developer): Response
     {
-        return $this->render('developer/show.html.twig', [
+        return $this->render('profiles/devs/show.html.twig', [
             'developer' => $developer,
         ]);
     }
@@ -63,7 +63,7 @@ final class DeveloperController extends AbstractController{
             return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('developer/edit.html.twig', [
+        return $this->render('profiles/devs/edit.html.twig', [
             'developer' => $developer,
             'form' => $form,
         ]);
