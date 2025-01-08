@@ -28,6 +28,7 @@ class AuthenticationController extends AbstractController
     public function profile()
     {
         $user = $this->getUser();
+       
         if(!$user){
             return null;
         }
@@ -37,9 +38,9 @@ class AuthenticationController extends AbstractController
         if(in_array('ROLE_COMPANY',$user->getRoles())){
             $viewDir = 'companies';
         }
-        // if(! $user->isCompleteProfile()){
-        //       $viewFile = 'edit.html.twig';
-        // }
+        if(!$user->isCompleteProfile()){
+              $viewFile = 'edit.html.twig';
+        }
         // if (in_array('ROLE_DEV',$user->getRoles())) {
           
         // } else if (in_array('ROLE_COMPANY',$user->getRoles())) {

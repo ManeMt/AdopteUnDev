@@ -95,7 +95,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function isCompleteProfile(): ?bool
+    {
+        return $this->completeProfile;
+    }
 
+    public function setCompleteProfile(bool $completeProfile): static
+    {
+        $this->completeProfile = $completeProfile;
+
+        return $this;
+    }
     public function eraseCredentials(): void
     {
         // Si vous stockez des informations sensibles supplémentaires, vous pouvez les effacer ici.
@@ -110,16 +120,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return null;
     }
 
-    public function isCompleteProfile(): ?bool
-    {
-        return $this->completeProfile;
-    }
-
-    public function setCompleteProfile(bool $completeProfile): static
-    {
-        $this->completeProfile = $completeProfile;
-
-        return $this;
-    }
+    
 }
 
