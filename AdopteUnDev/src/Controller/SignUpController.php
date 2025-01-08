@@ -42,7 +42,7 @@ class SignUpController extends AbstractController
         }
 
         // Affiche le formulaire d'inscription
-        return $this->render('sign_up/index.html.twig', [
+        return $this->render('joblist/index.html.twig', [
             'controller_name' => 'SignUpController',
         ]);
     }

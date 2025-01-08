@@ -12,6 +12,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: app_profile
                 enable_csrf: true
             logout:
                 path: app_logout
@@ -39,7 +40,7 @@ security:
 
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/profile, roles: ROLE_DEV }
+         - { path: ^/profile, roles: [ROLE_DEV,ROLE_COMPANY] }
          - { path: ^/job-post, roles: ROLE_COMPANY }
 
 when@test:
