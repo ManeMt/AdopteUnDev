@@ -28,6 +28,7 @@ class RegistrationType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Rôle utilisateur',
+         
                 'choices' => [
                     'Développeur' => 'ROLE_DEV',
                     'Entreprise' => 'ROLE_COMPANY',
@@ -35,7 +36,7 @@ class RegistrationType extends AbstractType
                 'multiple' => false,
                 'expanded' => true, 
                 'attr' => [
-                    'class' => 'roles-radio',
+                    'class' => 'roles-radio ml-3',
                 ],
             
             ]);

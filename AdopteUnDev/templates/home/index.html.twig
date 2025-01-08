@@ -1,20 +1,6 @@
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdopteUnDev</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+{% extends 'base.html.twig' %}
  
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
-
-    <!-- Material Icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}" />
-
+{% block stylesheets %}
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}" />
 
@@ -25,12 +11,10 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/owl.transitions.css') }}" />
+{% endblock %}
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-</head>
 
-<body>
+
     {# <!-- Loader -->
     <div id="preloader">
         <div id="status">
@@ -42,134 +26,7 @@
     </div>
     <!-- Loader --> #}
 
-    <!-- Navigation Bar-->
-<header id="topnav" class="defaultscroll scroll-active">
-    <!-- Tagline Start -->
-    <div class="tagline">
-        <div class="container">
-            <div class="float-left">
-                <div class="phone">
-                    <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
-                </div>
-                <div class="email">
-                    <a href="mailto:support@mail.com">
-                        <i class="mdi mdi-email"></i> Support@mail.com
-                    </a>
-                </div>
-            </div>
-            <div class="float-right">
-                <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                    <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.username : 'Guest' }}</a></li>
-                    <li class="list-inline-item">
-                        <select id="select-lang" class="demo-default">
-                            <option value="">Language</option>
-                            <option value="4">English</option>
-                            <option value="1">Spanish</option>
-                            <option value="3">French</option>
-                            <option value="5">Hindi</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    <!-- Tagline End -->
-
-    <!-- Menu Start -->
-    <div class="container">
-        <!-- Logo container-->
-        <div>
-            <a href="{{ path('home') }}" class="logo">
-                <img src="{{ asset('images/logo-light.png') }}" alt="" class="logo-light" height="18" />
-                <img src="{{ asset('images/logo-dark.png') }}" alt="" class="logo-dark" height="18" />
-            </a>
-        </div>                 
-        <div class="buy-button">
-            <a href="{{ path('post_job') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-        </div><!--end login button-->
-        <!-- End Logo container-->
-        <div class="menu-extras">
-            <div class="menu-item">
-                <!-- Mobile menu toggle-->
-                <a class="navbar-toggle">
-                    <div class="lines">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                  </a>
-                <!-- End mobile menu toggle-->
-            </div>
-        </div>
-    
-        <div id="navigation">
-            <!-- Navigation Menu-->   
-            <ul class="navigation-menu">
-                <li><a href="{{ path('home') }}">Home</a></li>
-                <li class="has-submenu">
-                    <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li><a href="{{ path('job_list') }}">Job List</a></li>
-                        <li><a href="{{ path('job_grid') }}">Job Grid</a></li>
-                        <li><a href="{{ path('job_details') }}">Job Details</a></li>
-                        <li><a href="{{ path('job_details_2') }}">Job Details-2</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="javascript:void(0)">Candidates</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li><a href="{{ path('candidates_listing') }}">Candidates Listing</a></li>
-                        <li><a href="{{ path('candidates_profile') }}">Candidates Profile</a></li>
-                        <li><a href="{{ path('create_resume') }}">Create Resume</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="javascript:void(0)">Employers</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li><a href="{{ path('employers_list') }}">Employers List</a></li>
-                        <li><a href="{{ path('company_detail') }}">Company Detail</a></li>
-                    </ul>
-                </li>
-
-                <li class="has-submenu">
-                    {# <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li><a href="{{ path('about') }}">About us</a></li>
-                        <li><a href="{{ path('services') }}">Services</a></li>
-                        <li><a href="{{ path('team') }}">Team</a></li>
-                        <li><a href="{{ path('faq') }}">Faqs</a></li>
-                        <li><a href="{{ path('pricing') }}">Pricing plans</a></li>
-                        
-                        <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ path('blog_grid') }}">Blogs</a></li>
-                                <li><a href="{{ path('blog_sidebar') }}">Blog Sidebar</a></li>
-                                <li><a href="{{ path('blog_details') }}">Blog Details</a></li>
-                            </ul>   #}
-                        </li>
-                       
-                        <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ path('app_login') }}">Login</a></li>
-                                <li><a href="{{ path('signup') }}">Signup</a></li>
-                                <li><a href="{{ path('password_recovery') }}">Forgot Password</a></li>
-                            </ul>  
-                        </li>
-                        {# <li><a href="{{ path('components') }}"> Components</a></li> #}
-                    </ul>
-                </li>
-               
-                <li>
-                    {# <a href="{{ path('contact') }}">Contact</a> #}
-                </li>
-            </ul><!--end navigation menu-->
-        </div><!--end navigation-->
-    </div><!--end container-->
-    <!--end end-->
-</header><!--end header-->
-<!-- Navbar End -->
-
+{% block body %}
 <!-- Start Home -->
 <section class="bg-home" style="background: url('{{ asset('images/bg-home.jpg') }}') center center;">
     <div class="bg-overlay"></div>
@@ -850,77 +707,8 @@
     </div>
 </section>
 <!-- subscribe end -->
+{% endblock %}
 
-<!-- footer start -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                <a href="javascript:void(0)">
-                    <img src="{{ logo }}" height="20" alt="Logo">
-                </a>
-                <p class="mt-4">{{ footerDescription }}</p>
-                <ul class="social-icon social list-inline mb-0">
-                    {% for social in socialLinks %}
-                        <li class="list-inline-item">
-                            <a href="{{ social.link }}" class="rounded">
-                                <i class="mdi {{ social.icon }}"></i>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <p class="text-white mb-4 footer-list-title">Company</p>
-                <ul class="list-unstyled footer-list">
-                    {% for link in companyLinks %}
-                        <li>
-                            <a href="{{ link.url }}" class="text-foot">
-                                <i class="mdi mdi-chevron-right"></i> {{ link.label }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <p class="text-white mb-4 footer-list-title">Resources</p>
-                <ul class="list-unstyled footer-list">
-                    {% for link in resourceLinks %}
-                        <li>
-                            <a href="{{ link.url }}" class="text-foot">
-                                <i class="mdi mdi-chevron-right"></i> {{ link.label }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
-                <ul class="list-unstyled text-foot mt-4 mb-0">
-                    {% for hour in businessHours %}
-                        <li>{{ hour }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- footer end -->
-
-<hr>
-
-<footer class="footer footer-bar">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="">
-                    <p class="mb-0">{{ copyrightText }}</p>
-                </div>
-            </div>
-        </div>
-    </div><!--end container-->
-</footer><!--end footer-->
-<!-- Footer End -->
 
 <!-- Back to top -->
 <a href="#" class="back-to-top rounded text-center" id="back-to-top">
@@ -928,20 +716,10 @@
 </a>
 <!-- Back to top -->
 
-<!-- javascript -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script src="js/plugins.js"></script>
-
+{% block javascripts %}
 <!-- selectize js -->
-<script src="js/selectize.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/counter.int.js"></script>
-
-<script src="js/app.js"></script>
 <script src="js/home.js"></script>
-
+{% endblock %}
 </body>

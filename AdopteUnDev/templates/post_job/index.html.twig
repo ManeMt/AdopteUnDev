@@ -1,189 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jobsila - Responsive Job Board HTML Template</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="HKStudio" />
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
-
-    <!-- Material Icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}" />
-
+{% block stylesheets %}
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}" />
+{% endblock %}
 
-    <!-- Selectize CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}" />
-
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/nice-select.css') }}" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-</head>
-
-<body>
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
-            </div>
-        </div>
-    </div>
-    <!-- Loader -->
-
-    <!-- Navigation Bar-->
-    <header id="topnav" class="defaultscroll scroll-active">
-        <!-- Tagline Start -->
-        <div class="tagline">
-            <div class="container">
-                <div class="float-left">
-                    <div class="phone">
-                        <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
-                    </div>
-                    <div class="email">
-                        <a href="#">
-                            <i class="mdi mdi-email"></i> Support@mail.com
-                        </a>
-                    </div>
-                </div>
-                <div class="float-right">
-                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                        <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
-                        <li class="list-inline-item">
-                            <select id="select-lang" class="demo-default">
-                                <option value="">Language</option>
-                                <option value="4">English</option>
-                                <option value="1">Spanish</option>
-                                <option value="3">French</option>
-                                <option value="5">Hindi</option>
-                            </select>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- Tagline End -->
-
-        <!-- Menu Start -->
-        <div class="container">
-            <!-- Logo container-->
-            <div>
-                <a href="{{ path('home') }}" class="logo">
-                    <img src="{{ asset('images/logo-light.png') }}" alt="" class="logo-light" height="18" />
-                    <img src="{{ asset('images/logo-dark.png') }}" alt="" class="logo-dark" height="18" />
-                </a>
-            </div>
-            <div class="buy-button">
-                <a href="{{ path('post_job') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div><!--end login button-->
-            <!-- End Logo container-->
-            <div class="menu-extras">
-                <div class="menu-item">
-                    <!-- Mobile menu toggle-->
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
-                    <!-- End mobile menu toggle-->
-                </div>
-            </div>
-
-            <div id="navigation">
-                <!-- Navigation Menu-->
-                <ul class="navigation-menu">
-                    <li><a href="{{ path('home') }}">Home</a></li>
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="{{ path('job_list') }}">Job List</a></li>
-                            <li><a href="{{ path('job_grid') }}">Job Grid</a></li>
-                            <li><a href="{{ path('job_details') }}">Job Details</a></li>
-                            <li><a href="{{ path('job_details_2') }}">Job Details-2</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Candidates</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="{{ path('candidates_listing') }}">Candidates Listing</a></li>
-                            <li><a href="{{ path('candidates_profile') }}">Candidates Profile</a></li>
-                            <li><a href="{{ path('create_resume') }}">Create Resume</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Employers</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="{{ path('employers_list') }}">Employers List</a></li>
-                            <li><a href="{{ path('company_detail') }}">Company Detail</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="{{ path('about') }}">About us</a></li>
-                            <li><a href="{{ path('services') }}">Services</a></li>
-                            <li><a href="{{ path('team') }}">Team</a></li>
-                            <li><a href="{{ path('faq') }}">Faqs</a></li>
-                            <li><a href="{{ path('pricing') }}">Pricing plans</a></li>
-
-                            <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="{{ path('blog_grid') }}">Blogs</a></li>
-                                    <li><a href="{{ path('blog_sidebar') }}">Blog Sidebar</a></li>
-                                    <li><a href="{{ path('blog_details') }}">Blog Details</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="{{ path('app_login') }}">Login</a></li>
-                                    <li><a href="{{ path('signup') }}">Signup</a></li>
-                                    <li><a href="{{ path('password_recovery') }}">Forgot Password</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ path('components') }}"> Components</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="{{ path('contact') }}">Contact</a>
-                    </li>
-                </ul><!--end navigation menu-->
-            </div><!--end navigation-->
-        </div><!--end container-->
-        <!--end end-->
-    </header><!--end header-->
-    <!-- Navbar End -->
-
+{% block body %}
     <!-- Start home -->
-    <section class="bg-half page-next-level">
+    <section class="bg-half page-next-level"> 
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Create A New Job</h4>
+                        <h4 class="text-uppercase title mb-4">Create A new Job</h4>
                         <ul class="page-next d-inline-block mb-0">
                             <li><a href="{{ path('home') }}" class="text-uppercase font-weight-bold">Home</a></li>
                             <li>
-                                <span class="text-uppercase text-white font-weight-bold">Post A Job</span>
-                            </li>
+                                <span class="text-uppercase text-white font-weight-bold">Post A Job</span> 
+                            </li> 
                         </ul>
                     </div>
                 </div>
@@ -392,7 +225,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-12 mt-2">
-                                        <button type="submit" class="btn btn-primary">Post a Job</button>
+                                        <a href="#" class="btn btn-primary">Post a Job</a>
                                     </div>
                                 </div>
                             </form>
@@ -421,4 +254,19 @@
                             <div class="input-group mb-0">
                                 <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary submitBnt" type="submit" id="newss
+                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe end -->
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    {% endblock %}
