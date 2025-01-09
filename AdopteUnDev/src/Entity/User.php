@@ -9,6 +9,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorMap(['developer' => Developer::class, 'company' => Company::class])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -25,14 +28,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private array $roles; //= []
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Developer $developer = null;
+    // #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    // private ?Developer $developer = null;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Company $companies = null;
     #[ORM\Column(type: 'boolean', options: ["default" => false])]
     private ?bool $completeProfile = false;
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -82,21 +84,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
-    public function getDeveloper(): ?Developer
-    {
-        return $this->developer;
-    }
+    // public function getDeveloper(): ?Developer
+    // {
+    //     return $this->developer;
+    // }
 
-    public function setDeveloper(Developer $developer): static
-    {
-        if ($developer->getUser() !== $this) {
-            $developer->setUser($this);
-        }
-
-        $this->developer = $developer;
-
-        return $this;
-    }
     public function isCompleteProfile(): ?bool
     {
         return $this->completeProfile;
@@ -108,21 +100,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getCompany(): ?Company
-    {
-        return $this->companies;
-    }
-    public function setCompany(Company $companies): static
-    {
-        if ($companies->getUser() !== $this) {
-            $companies->setUser($this);
-        }
-
-        $this->developer = $companies;
-
-        return $this;
-    }
-
+    
 
 
     public function eraseCredentials(): void
