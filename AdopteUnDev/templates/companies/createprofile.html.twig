@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Company Profile{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+</div>
+
+<header id="topnav" class="defaultscroll scroll-active">
+    <div class="tagline">
+        <div class="container">
+            <div class="float-left">
+                <div class="phone"><i class="mdi mdi-phone-classic"></i> +1 800 123 45 67</div>
+                <div class="email"><a href="#"><i class="mdi mdi-email"></i> Support@mail.com</a></div>
+            </div>
+            <div class="float-right">
+                <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
+                    <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
+                    <li class="list-inline-item">
+                        <select id="select-lang" class="demo-default">
+                            <option value="">Language</option>
+                            <option value="4">English</option>
+                            <option value="1">Spanish</option>
+                            <option value="3">French</option>
+                            <option value="5">Hindi</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-half page-next-level"> 
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Create Company Profile</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <form method="post" action="{{ path('app_company-createprofile') }}" enctype="multipart/form-data">
+            <!-- Company Header -->
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <div class="form-group">
+                        <label for="logo">Company Logo</label>
+                        <input type="file" id="logo" name="logo" class="form-control-file">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Company Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <input type="text" id="industry" name="industry" class="form-control" placeholder="Enter industry" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Details -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="description">About Us</label>
+                        <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter a brief description" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="row">
+                <div class="col-lg-12 mt-4">
+                    <h4 class="text-dark">Contact Information :</h4>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" class="form-control" placeholder="Enter location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input type="url" id="website" name="website" class="form-control" placeholder="Enter website URL" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="row">
+                <div class="col-lg-12 mt-4">
+                    <div class="form-group">
+                        <label for="images">Gallery Images</label>
+                        <input type="file" id="images" name="images[]" class="form-control-file" multiple>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit Profile</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
