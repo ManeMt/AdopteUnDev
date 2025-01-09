@@ -31,6 +31,13 @@ final class CompanyController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Mettre à jour l'attribut completeProfile de l'utilisateur
+            if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
+                $user->setCompleteProfile(true);
+                $entityManager->persist($user);
+            }
+            
             $entityManager->persist($company);
             $entityManager->flush();
 
