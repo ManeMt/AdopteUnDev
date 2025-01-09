@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - Developer{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="mb-4">Developer Dashboard</h1>
+
+        <div class="row">
+            <!-- Statistiques -->
+            <div class="col-md-4">
+                <div class="card text-center bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Offres suggérées</h5>
+                        <p class="card-text h2">15</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Candidatures envoyées</h5>
+                        <p class="card-text h2">5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Entreprises intéressées</h5>
+                        <p class="card-text h2">8</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offres d'emploi -->
+        <h2 class="mt-4">Offres suggérées</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Salaire</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in suggestedJobs %}
+                        <tr>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.salary }}</td>
+                            <td>
+                                <a href="{{ path('job_apply', {'id': job.id}) }}" class="btn btn-primary btn-sm">Postuler</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">Aucune offre trouvée.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

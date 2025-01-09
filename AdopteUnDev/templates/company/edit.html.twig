@@ -3,11 +3,24 @@
 {% block title %}Edit Company{% endblock %}
 
 {% block body %}
-    <h1>Edit Company</h1>
+<section class="section">
+    <div class="container">
+        <h1 class="mb-4">Edit Company</h1>
 
-    {{ include('company/_form.html.twig', {'button_label': 'Update'}) }}
+        <!-- Formulaire d'édition -->
+        <div class="border rounded p-4">
+            {{ include('company/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
 
-    <a href="{{ path('app_company_index') }}">back to list</a>
+        <!-- Lien de retour à la liste -->
+        <div class="mt-3">
+            <a href="{{ path('app_company_index') }}" class="btn btn-secondary">Back to list</a>
+        </div>
 
-    {{ include('company/_delete_form.html.twig') }}
+        <!-- Formulaire de suppression -->
+        <div class="mt-3">
+            {{ include('company/_delete_form.html.twig') }}
+        </div>
+    </div>
+</section>
 {% endblock %}

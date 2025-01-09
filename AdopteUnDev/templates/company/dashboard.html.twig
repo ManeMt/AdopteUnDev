@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - Company{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="mb-4">Company Dashboard</h1>
+
+        <div class="row">
+            <!-- Statistiques -->
+            <div class="col-md-4">
+                <div class="card text-center bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Offres publiées</h5>
+                        <p class="card-text h2">{{ company.jobAdds|length }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Candidats intéressés</h5>
+                        <p class="card-text h2">23</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Vues totales</h5>
+                        <p class="card-text h2">456</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des offres d'emploi -->
+        <h2 class="mt-4">Vos Offres d'emploi</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Postes</th>
+                        <th>Salaire</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in company.jobAdds %}
+                        <tr>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.positions }}</td>
+                            <td>{{ job.salary }}</td>
+                            <td>
+                                <a href="{{ path('job_edit', {'id': job.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="{{ path('job_delete', {'id': job.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">Aucune offre trouvée.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

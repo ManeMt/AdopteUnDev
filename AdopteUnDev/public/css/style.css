@@ -2591,3 +2591,26 @@ hr {
   border-top: 1px solid #333744;
 }
 /*# sourceMappingURL=style.css.map */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.875rem;
+}

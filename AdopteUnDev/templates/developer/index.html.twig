@@ -3,57 +3,61 @@
 {% block title %}Developer Index{% endblock %}
 
 {% block body %}
-    <h1>Developer Index</h1>
+<section class="section">
+    <div class="container">
+        <h1 class="mb-4">Developer Index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Min Salary</th>
-                <th>Level</th>
-                <th>Biography</th>
-                <th>Avatar</th>
-                <th>Programming Languages</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for developer in developers %}
-            <tr>
-                <td>{{ developer.id }}</td>
-                <td>{{ developer.firstName }}</td>
-                <td>{{ developer.lastName }}</td>
-                <td>{{ developer.minSalary }}</td>
-                <td>{{ developer.level }}</td>
-                <td>{{ developer.biography }}</td>
-                <td>
-                    {% if developer.avatar %}
-                        <img src="{{ asset('uploads/avatars/' ~ developer.avatar) }}" alt="Avatar" style="max-width: 50px;">
-                    {% else %}
-                        No avatar
-                    {% endif %}
-                </td>
-                <td>
-                    {% for language in developer.programingLanguages %}
-                        <span class="badge bg-info text-dark">{{ language.name }}</span>
-                    {% else %}
-                        No languages
-                    {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('app_developer_show', {'id': developer.id}) }}" class="btn btn-info btn-sm">Show</a>
-                    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}" class="btn btn-primary btn-sm">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">No records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Min Salary</th>
+                    <th>Level</th>
+                    <th>Biography</th>
+                    <th>Avatar</th>
+                    <th>Programming Languages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for developer in developers %}
+                <tr>
+                    <td>{{ developer.id }}</td>
+                    <td>{{ developer.firstName }}</td>
+                    <td>{{ developer.lastName }}</td>
+                    <td>{{ developer.minSalary }}</td>
+                    <td>{{ developer.level }}</td>
+                    <td>{{ developer.biography }}</td>
+                    <td>
+                        {% if developer.avatar %}
+                            <img src="{{ asset('uploads/avatars/' ~ developer.avatar) }}" alt="Avatar" style="max-width: 50px; border-radius: 50%;">
+                        {% else %}
+                            <span class="text-muted">No avatar</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% for language in developer.programingLanguages %}
+                            <span class="badge bg-info text-dark">{{ language.name }}</span>
+                        {% else %}
+                            <span class="text-muted">No languages</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_developer_show', {'id': developer.id}) }}" class="btn btn-info btn-sm">Show</a>
+                        <a href="{{ path('app_developer_edit', {'id': developer.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9" class="text-center text-muted">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_developer_new') }}" class="btn btn-success">Create new</a>
+        <a href="{{ path('app_developer_new') }}" class="btn btn-success mt-3">Create new</a>
+    </div>
+</section>
 {% endblock %}

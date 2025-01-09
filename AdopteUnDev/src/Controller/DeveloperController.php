@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\JobAddRepository;
 
 #[Route('/developer')]
 final class DeveloperController extends AbstractController{
@@ -43,6 +44,40 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
+    #[Route('/developer-createprofile', name: 'app_developer-createprofile', methods: ['GET'])]
+    public function test(): Response
+    {
+        return $this->render('developer/createprofile.html.twig', [
+            
+        ]);
+    }
+
+ 
+
+        #[Route('/profile', name: 'developer_profile', methods: ['GET'])]
+        public function affiche (): Response
+        {
+            // Données simulées pour un développeur
+            $developer = [
+                'firstName' => 'John',
+                'lastName' => 'Doe',
+                'minSalary' => 60000,
+                'level' => 4,
+                'biography' => 'A passionate full-stack developer with 5 years of experience in web applications.',
+                'avatar' => 'default-avatar.png',
+                'programingLanguages' => ['PHP', 'JavaScript', 'Python']
+            ];
+    
+            // Affichage de la vue Twig
+            return $this->render('developer/profile.html.twig', [
+                'developer' => $developer,
+            ]);
+        }
+    
+    
+
+
+
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
     public function show(Developer $developer): Response
     {
@@ -69,6 +104,9 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
+    
+    
+
     #[Route('/{id}', name: 'app_developer_delete', methods: ['POST'])]
     public function delete(Request $request, Developer $developer, EntityManagerInterface $entityManager): Response
     {
@@ -79,4 +117,16 @@ final class DeveloperController extends AbstractController{
 
         return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+#[Route('/developer/dashboard', name: 'developer_dashboard')]
+public function developerDashboard(JobAddRepository $jobAddRepository)//: Response
+{
+    // $developer = $this->getUser()->getDeveloper();
+    // $suggestedJobs = $jobAddRepository->findSuggestedJobs($developer);
+
+    //return $this->render('developer/dashboard.html.twig', [
+        // 'suggestedJobs' => $suggestedJobs,
+  //  ]);
+}
 }
