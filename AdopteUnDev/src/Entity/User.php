@@ -97,7 +97,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function isCompleteProfile(): ?bool
+    {
+        return $this->completeProfile;
+    }
 
+    public function setCompleteProfile(bool $completeProfile): static
+    {
+        $this->completeProfile = $completeProfile;
+
+        return $this;
+    }
     public function getCompany(): ?Company
     {
         return $this->companies;
@@ -129,16 +139,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return null;
     }
 
-    public function isCompleteProfile(): ?bool
-    {
-        return $this->completeProfile;
-    }
-
-    public function setCompleteProfile(bool $completeProfile): static
-    {
-        $this->completeProfile = $completeProfile;
-
-        return $this;
-    }
+    
 }
 

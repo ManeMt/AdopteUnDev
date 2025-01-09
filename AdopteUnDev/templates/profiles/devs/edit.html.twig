@@ -1,32 +1,16 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
 
-{% block title %}Profil Développeur{% endblock %}
-
-{% block body %}
-<section class="profile">
-    <div class="profile-header">
-        <h1>Profil de {{ developer.firstName }} {{ developer.lastName }}</h1>
-        {% if developer.avatar %}
-            <img src="{{ asset('uploads/avatars/' ~ developer.avatar) }}" alt="Avatar du développeur">
-        {% endif %}
-    </div>
-
-    <div class="profile-details">
-        <h2>Informations personnelles</h2>
-        <p><strong>Salaire minimum :</strong> {{ developer.minSalary }} €</p>
-        <p><strong>Niveau :</strong> {{ developer.level }}</p>
-        <p><strong>Biographie :</strong> {{ developer.biography }}</p>
-
-        <h2>Compétences</h2>
-        <ul>
-            {% for skill in developer.programingLanguages %}
-                <li>{{ skill.name }}</li>
-            {% else %}
-                <p>Aucune compétence ajoutée.</p>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <a href="{{ path('developer_dashboard') }}" class="btn btn-primary">Retour au Dashboard</a>
-</section>
-{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}Hello companiy{% endblock %}
+    </body>
+</html>

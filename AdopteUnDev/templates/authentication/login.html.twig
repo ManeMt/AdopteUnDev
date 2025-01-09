@@ -1,40 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html.twig' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdopteUnDev</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    
-    <link rel="shortcut icon" href="{{ asset('images/alphabet-icon.png') }}">
+{% block header %} {% endblock %}
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
-
-    <!--Material Icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}" />
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}" />
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/nice-select.css') }}" />
-
-    <!-- Custom  Css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-</head>
-
-<body>
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
-            </div>
-        </div>
-    </div>
-    <!-- Loader -->
+{% block body %}
 
     <div class="back-to-home rounded d-none d-sm-block">
         <a href="{{ path('home') }}" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
@@ -49,7 +17,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="login-page bg-white shadow rounded p-4">
                                 <div class="text-center">
-                                    <h4 class="mb-4">Login</h4>
+                                    <h4 class="mb-4">Connexion</h4>
                                 </div>
                                 <form method="post">
                                     {% if error %}
@@ -80,19 +48,19 @@
                                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                                         <div class="col-lg-12">
-                                            <p class="float-right forgot-pass"><a href="{{ path('password_recovery') }}" class="text-dark font-weight-bold">Forgot password ?</a></p>
+                                            <p class="float-right forgot-pass"><a href="{{ path('password_recovery') }}" class="text-dark font-weight-bold">Mot de passe oublié</a></p>
                                             <div class="form-group">
                                                 <div class="custom-control m-0 custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1" name="_remember_me">
-                                                    <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                                    <label class="custom-control-label" for="customCheck1">Se souvenir de moi</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 mb-0">
-                                            <button class="btn btn-primary w-100" type="submit">Sign in</button>
+                                            <button class="btn btn-primary w-100" type="submit">Se connecter</button>
                                         </div>
                                         <div class="col-lg-12 mt-4 text-center">
-                                            <h6>Or Login With</h6>
+                                            <h6>Se connecter avec</h6>
                                             <ul class="list-unstyled social-icon mb-0 mt-3">
                                                 <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="Facebook"></i></a></li>
                                                 <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-google-plus" title="Google"></i></a></li>
@@ -100,7 +68,7 @@
                                             </ul><!--end icon-->
                                         </div>
                                         <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Don't have an account ?</small> <a href="{{ path('signup') }}" class="text-dark font-weight-bold">Sign Up</a></p>
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Je n'ai pas de compte</small> <a href="{{ path('app_register') }}" class="text-dark font-weight-bold">Créer un compte</a></p>
                                         </div>
                                     </div>
                                 </form>
@@ -113,17 +81,7 @@
     </section><!--end section-->
     <!-- Hero End -->
 
-    <!-- javascript -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/plugins.js') }}"></script>
+    
+{% endblock %}
+{% block footer %} {% endblock %}
 
-    <!-- selectize js -->
-    <script src="{{ asset('js/selectize.min.js') }}"></script>
-
-    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>

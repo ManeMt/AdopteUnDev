@@ -1,38 +1,20 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
 
-{% block title %}Dashboard Développeur{% endblock %}
-
-{% block body %}
-<section class="dashboard">
-    <div class="dashboard-header">
-        <h1>Bienvenue, {{ developer.firstName }} !</h1>
-        <p>Voici un aperçu de votre activité :</p>
-    </div>
-
-    <div class="stats">
-        <div class="stat">
-            <h3>3</h3>
-            <p>Projets en cours</p>
-        </div>
-        <div class="stat">
-            <h3>15</h3>
-            <p>Entreprises intéressées</p>
-        </div>
-    </div>
-
-    <div class="job-list">
-        <h2>Suggestions d'offres</h2>
-        <ul>
-            {% for job in suggestedJobs %}
-                <li>
-                    <h3>{{ job.title }}</h3>
-                    <p><strong>Salaire proposé :</strong> {{ job.salary }} €</p>
-                    <a href="{{ path('job_detail', { id: job.id }) }}" class="btn btn-primary">Postuler</a>
-                </li>
-            {% else %}
-                <p>Aucune offre d'emploi suggérée pour le moment.</p>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
-{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% if app.user %}
+    <h1>Hello {{ app.user.email }}!</h1>
+{% else %}
+    <h1>Hello Guest!</h1>
+{% endif %}
+    </body>
+</html>

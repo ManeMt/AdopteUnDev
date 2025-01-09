@@ -1,46 +1,16 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
 
-{% block title %}Profil de l'Entreprise{% endblock %}
-
-{% block body %}
-    <section class="company-profile">
-        <div class="profile-header">
-            {% if company.banner %}
-                <div class="banner" style="background-image: url('{{ asset('uploads/banners/' ~ company.banner) }}');">
-                </div>
-            {% endif %}
-            <div class="profile-info">
-                <h1>{{ company.name }}</h1>
-                {% if company.logo %}
-                    <img src="{{ asset('uploads/logos/' ~ company.logo) }}" alt="Logo de l'entreprise">
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="profile-details">
-            <h2>Description</h2>
-            <p>{{ company.description }}</p>
-
-            <h2>Contact</h2>
-            <p>Email : {{ company.contact }}</p>
-            <p>Site Web : <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></p>
-
-            <h2>Secteur</h2>
-            <p>{{ company.sector.name }}</p>
-
-            <h2>Localisation</h2>
-            <p>{{ company.location.name }}</p>
-        </div>
-
-        <h2>Offres d'emploi publiées</h2>
-        <ul class="job-list">
-            {% for job in company.jodAdds %}
-                <li>
-                    <a href="{{ path('job_detail', { id: job.id }) }}">{{ job.title }}</a>
-                </li>
-            {% else %}
-                <p>Aucune offre d'emploi disponible pour le moment.</p>
-            {% endfor %}
-        </ul>
-    </section>
-{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>
