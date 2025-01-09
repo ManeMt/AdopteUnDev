@@ -52,7 +52,15 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
- 
+    #[Route('/developer/dashboard', name: 'developer_dashboard')]
+    public function developerDashboard(JobAddRepository $jobAddRepository):Response
+    {
+    
+    
+        return $this->render('developer/dashboard.html.twig', [
+             
+      ]);
+    }
 
         #[Route('/profile', name: 'developer_profile', methods: ['GET'])]
         public function affiche (): Response
@@ -119,14 +127,5 @@ final class DeveloperController extends AbstractController{
     }
 
 
-#[Route('/developer/dashboard', name: 'developer_dashboard')]
-public function developerDashboard(JobAddRepository $jobAddRepository)//: Response
-{
-    // $developer = $this->getUser()->getDeveloper();
-    // $suggestedJobs = $jobAddRepository->findSuggestedJobs($developer);
 
-    //return $this->render('developer/dashboard.html.twig', [
-        // 'suggestedJobs' => $suggestedJobs,
-  //  ]);
-}
 }

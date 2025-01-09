@@ -89,14 +89,21 @@ final class CompanyController extends AbstractController{
         // Rendu de la vue Twig
         return $this->render('company/createprofile.html.twig');
     }
+  
+   #[Route('/dashboard', name: 'company_dashboard')]
+    public function companyDashboard(): Response
 
-
+   {
+        return $this->render('company/dashboard.html.twig', [
+         
+       ]);
+   }
 
     #[Route('/company-profile', name: 'app_company-profile', methods: ['GET'])]
     public function essai(): Response
-    { 
-        {
-            $company = [
+    
+    {
+       $company = [
                 'name' => 'My Company',
                 'industry' => 'Software Development',
                 'location' => 'Paris, France',
@@ -113,11 +120,11 @@ final class CompanyController extends AbstractController{
             return $this->render('company/profile.html.twig', [
                 'company' => $company,
             ]);
-        }
+        
         
             
-    }
-
+    
+        }
     #[Route('/{id}', name: 'app_company_show', methods: ['GET'])]
     public function show(Company $company): Response
     {
@@ -154,17 +161,10 @@ final class CompanyController extends AbstractController{
 
         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-#[Route('/company/dashboard', name: 'company_dashboard')]
- public function companyDashboard(): Response
-{
-    $company = $this->getUser()->getCompany();
-    return $this->render('company/dashboard.html.twig', [
-        'company' => $company,
-    ]);
 }
 
 
-}
+
+
+
 
