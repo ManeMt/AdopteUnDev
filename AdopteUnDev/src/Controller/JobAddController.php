@@ -38,7 +38,7 @@ final class JobAddController extends AbstractController
             return $this->redirectToRoute('app_job_add_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('job_add/new.html.twig', [
+        return $this->render('post_job/index.html.twig', [
             'job_add' => $jobAdd,
             'form' => $form,
         ]);
