@@ -109,8 +109,11 @@ final class DeveloperController extends AbstractController{
 
 
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
-    public function show(Developer $developer): Response
+    public function show(Developer $developer, EntityManagerInterface $entityManager): Response
     {
+        $developer->incrementNumberView();
+        $entityManager->flush();
+
         return $this->render('devs/show.html.twig', [
             'developer' => $developer,
         ]);

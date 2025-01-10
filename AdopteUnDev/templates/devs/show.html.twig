@@ -1,46 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Developer{% endblock %}
+{% block title %}Developer Profile{% endblock %}
 
 {% block body %}
-    <h1>Developer</h1>
+{# <div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+</div> #}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ developer.id }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ developer.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ developer.lastName }}</td>
-            </tr>
-            <tr>
-                <th>MinSalary</th>
-                <td>{{ developer.minSalary }}</td>
-            </tr>
-            <tr>
-                <th>Level</th>
-                <td>{{ developer.level }}</td>
-            </tr>
-            <tr>
-                <th>Biography</th>
-                <td>{{ developer.biography }}</td>
-            </tr>
-            <tr>
-                <th>Avatar</th>
-                <td>{{ developer.avatar }}</td>
-            </tr>
-        </tbody>
-    </table>
+<header id="topnav" class="defaultscroll scroll-active">
+    <div class="tagline">
+        <div class="container">
+            <div class="float-left">
+                <div class="phone"><i class="mdi mdi-phone-classic"></i> +1 800 123 45 67</div>
+                <div class="email"><a href="#"><i class="mdi mdi-email"></i> Support@mail.com</a></div>
+            </div>
+            <div class="float-right">
+                <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
+                    <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
+                    <li class="list-inline-item">
+                        <select id="select-lang" class="demo-default">
+                            <option value="">Language</option>
+                            <option value="4">English</option>
+                            <option value="1">Spanish</option>
+                            <option value="3">French</option>
+                            <option value="5">Hindi</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
-    <a href="{{ path('app_developer_index') }}">back to list</a>
+<section class="bg-half page-next-level"> 
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Developer Profile</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}">edit</a>
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <img src="{{ asset('uploads/' ~ developer.avatar) }}" class="img-fluid avatar avatar-medium d-block mx-auto rounded-pill" alt="Developer Avatar">
+                <h3>{{ developer.firstName }} {{ developer.lastName }}</h3>
+              
+                <p class="text-muted">Minimum Desired Salary: ${{ developer.minSalary }}</p>
+            </div>
+        </div>
 
-    {{ include('devs/_delete_form.html.twig') }}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h5 class="text-dark">Programming Languages :</h5>
+                <ul>
+                    {% for language in developer.programingLanguages %}
+                        <li>{{ language }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h5 class="text-dark">Experience Level :</h5>
+                <p>{{ developer.level }} / 5</p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h5 class="text-dark">Biography :</h5>
+                <p>{{ developer.biography }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}

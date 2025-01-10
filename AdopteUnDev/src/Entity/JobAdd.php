@@ -22,6 +22,9 @@ class JobAdd
     #[ORM\Column]
     private ?int $level = null;
 
+    #[ORM\Column(type: 'integer', options: ["default" => 0])]
+    private int $numberView = 0;
+
     #[ORM\Column]
     private ?float $salary = null;
 
@@ -75,6 +78,24 @@ class JobAdd
 
         return $this;
     }
+
+    public function getNumberView(): ?int
+    {
+        return $this->numberView;
+    }
+
+    public function setNumberViews(?int $numberView): static
+    {
+        $this->numberView = $numberView;
+
+        return $this;
+    }
+
+    public function incrementNumberView(): void
+    {
+        $this->numberView++;
+    }
+
 
     public function getSalary(): ?float
     {
