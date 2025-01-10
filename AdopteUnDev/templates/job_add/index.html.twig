@@ -1,5 +1,5 @@
 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -30,6 +30,7 @@
                     <div class="list-grid-item rounded">
                         <div class="grid-item-content p-3">
                             <ul class="list-inline mb-0">
+                            
                                 <li class="list-inline-item f-15">
                                     <span class="badge badge-success">
                                         {{ job_add.level == 'Full Time' ? 'Full Time' : 'Part Time' }}
@@ -40,12 +41,16 @@
                                         <a href="#" class="text-danger"><i class="mdi mdi-heart"></i></a>
                                     </div>
                                 </li>
-                            </ul>
-                            <div class="grid-list-img mt-3">
+                    
+                            </ul> #}
+                            {# <div class="grid-list-img mt-3">
                                 <!-- Placeholder image -->
                                 <img src="images/featured-job/img-placeholder.png" alt="{{ job_add.postTitle }}" class="img-fluid d-block">
-                            </div>
-                            <div class="grid-list-desc mt-3">
+                            </div> #}
+                             {# <div class="grid-list-img mt-3">
+                                <img src="{{ asset('images/featured-job/img-6.png') }}" alt="{{ job_add.postTitle }}" class="img-fluid d-block">
+                            </div> #}
+                            {# <div class="grid-list-desc mt-3">
                                 <h5 class="mb-1">
                                     <a href="{{ path('app_job_add_show', {'id': job_add.id}) }}" class="text-dark">
                                         {{ job_add.postTitle }}
@@ -72,4 +77,144 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %} #}
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<!-- Start home -->
+<section class="bg-half page-next-level">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Consulter vos offres</h4>
+                    <ul class="page-next d-inline-block mb-0">
+                        <li><a href="{{ path('home') }}" class="text-uppercase font-weight-bold">Accueil</a></li>
+                        <li>
+                            <span class="text-uppercase text-white font-weight-bold">Offres</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end home -->
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    {% for job_add in job_adds %}
+                        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                            <div class="list-grid-item rounded">
+                                <div class="grid-item-content p-3">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item f-15">
+                                            <span class="badge badge-success">
+                                                {{ job_add.level == 'Full Time' ? 'Full Time' : 'Part Time' }}
+                                            </span>
+                                        </li>
+                                        <li class="list-inline-item float-right">
+                                            <div class="grid-fev-icon">
+                                                <a href="#" class="text-danger"><i class="mdi mdi-heart"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="grid-list-img mt-3">
+                                        <img src="{{ asset('images/featured-job/img-placeholder.png') }}" alt="{{ job_add.postTitle }}" class="img-fluid d-block">
+                                    </div>
+                                    <div class="grid-list-desc mt-3">
+                                        <h5 class="mb-1">
+                                            <a href="{{ path('app_job_add_show', {'id': job_add.id}) }}" class="text-dark">
+                                                {{ job_add.postTitle }}
+                                            </a>
+                                        </h5>
+                                        <p class="text-muted f-14 mb-1">
+                                            {{ job_add.location is defined ? job_add.location.entitled : 'No location specified' }}
+                                        </p>
+                                        <p class="text-muted mb-1">${{ job_add.salary }}</p>
+                                    </div>
+                                </div>
+                                <div class="apply-button p-3 border-top">
+                                    <a href="{{ path('app_job_add_show', {'id': job_add.id}) }}" class="btn btn-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-12 text-center mt-4">
+                            <p class="text-muted">No job listings found.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination job-pagination mb-0 justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <i class="mdi mdi-chevron-double-left f-15"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="mdi mdi-chevron-double-right f-15"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- subscribe start -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="float-left position-relative notification-icon mr-2">
+                    <i class="mdi mdi-bell-outline text-primary"></i>
+                    <span class="badge badge-pill badge-danger">1</span>
+                </div>
+                <h5 class="mt-2 mb-0">Your Job Notification</h5>
+            </div>
+            <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
+                <form>
+                    <div class="form-group mb-0">
+                        <div class="input-group mb-0">
+                            <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- subscribe end -->
+
+
+<!-- Back to top -->
+<a href="#" class="back-to-top rounded text-center" id="back-to-top">
+    <i class="mdi mdi-chevron-up d-block"></i>
+</a>
+<!-- Back to top -->
+
 {% endblock %}
