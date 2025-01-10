@@ -52,15 +52,27 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
-    #[Route('/developer/dashboard', name: 'developer_dashboard')]
-    public function developerDashboard(JobAddRepository $jobAddRepository):Response
-    {
     
-    
-        return $this->render('developer/dashboard.html.twig', [
-             
-      ]);
-    }
+            #[Route('/dashboard', name: 'developer_dashboard', methods: ['GET'])]
+            public function ex(): Response
+            {
+                // Données simulées pour le développeur
+                $data = [
+                    'views' => 120, // Nombre de vues du profil
+                    'topProfiles' => [
+                        ['name' => 'John Doe', 'views' => 340],
+                        ['name' => 'Jane Smith', 'views' => 300],
+                    ],
+                ];
+        
+                return $this->render('devs/dashboard.html.twig', [
+                    'data' => $data,
+                ]);
+            }
+        
+        
+            
+     
 
         #[Route('/profile', name: 'developer_profile', methods: ['GET'])]
         public function affiche (): Response

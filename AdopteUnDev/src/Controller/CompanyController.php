@@ -90,14 +90,25 @@ final class CompanyController extends AbstractController{
         return $this->render('company/createprofile.html.twig');
     }
   
-   #[Route('/dashboard', name: 'company_dashboard')]
-    public function companyDashboard(): Response
-
-   {
-        return $this->render('company/dashboard.html.twig', [
-         
-       ]);
-   }
+        #[Route('/dashboard', name: 'company_dashboard', methods: ['GET'])]
+        public function resume (): Response
+        {
+            // Données simulées pour l'entreprise
+            $data = [
+                'views' => 220, // Nombre de vues des fiches de poste
+                'topJobs' => [
+                    ['title' => 'Full-Stack Developer', 'views' => 180],
+                    ['title' => 'Frontend Engineer', 'views' => 150],
+                ],
+            ];
+    
+            return $this->render('companies/dashboard.html.twig', [
+                'data' => $data,
+            ]);
+        }
+    
+    
+    
 
     #[Route('/company-profile', name: 'app_company-profile', methods: ['GET'])]
     public function essai(): Response

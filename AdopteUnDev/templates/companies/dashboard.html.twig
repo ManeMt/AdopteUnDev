@@ -1,112 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Company Profile{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-{% endblock %}
+{% block title %}Dashboard - Entreprise{% endblock %}
 
 {% block body %}
-<div id="preloader">
-    <div id="status">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
-</div>
-
-<header id="topnav" class="defaultscroll scroll-active">
-    <div class="tagline">
-        <div class="container">
-            <div class="float-left">
-                <div class="phone"><i class="mdi mdi-phone-classic"></i> +1 800 123 45 67</div>
-                <div class="email"><a href="#"><i class="mdi mdi-email"></i> Support@mail.com</a></div>
-            </div>
-            <div class="float-right">
-                <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                    <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>John Doe</a></li>
-                    <li class="list-inline-item">
-                        <select id="select-lang" class="demo-default">
-                            <option value="">Language</option>
-                            <option value="4">English</option>
-                            <option value="1">Spanish</option>
-                            <option value="3">French</option>
-                            <option value="5">Hindi</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section class="bg-half page-next-level"> 
-    <div class="bg-overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4">Company Profile</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="section">
     <div class="container">
-        <!-- Company Header -->
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center">
-                <img src="{{ asset('images/company-logo.png') }}" alt="Company Logo" class="img-fluid mb-4">
-                <h3>{{ company.name }}</h3>
-                <p class="text-muted">{{ company.industry }}</p>
-            </div>
-        </div>
-
-        <!-- Company Details -->
         <div class="row">
-            <div class="col-lg-12">
-                <h4 class="text-dark">About Us :</h4>
-                <p class="text-muted">{{ company.description }}</p>
-            </div>
-        </div>
-
-        <!-- Contact Information -->
-        <div class="row">
-            <div class="col-lg-12 mt-4">
-                <h4 class="text-dark">Contact Information :</h4>
-                <ul class="list-unstyled">
-                    <li><i class="mdi mdi-map-marker mr-2"></i>{{ company.location }}</li>
-                    <li><i class="mdi mdi-web mr-2"></i><a href="{{ company.website }}" target="_blank">{{ company.website }}</a></li>
-                    <li><i class="mdi mdi-email mr-2"></i>{{ company.email }}</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Gallery -->
-        <div class="row">
-            <div class="col-lg-12 mt-4">
-                <h4 class="text-dark">Gallery :</h4>
-                <div class="row">
-                    {% for image in company.images %}
-                        <div class="col-md-4">
-                            <img src="{{ asset(image) }}" alt="Company Image" class="img-fluid rounded mb-3">
+            <!-- Sidebar Statistiques -->
+            <div class="col-lg-3">
+                <div class="left-sidebar">
+                    <div class="accordion" id="accordionStatistics">
+                        <div class="card rounded mt-4">
+                            <a data-toggle="collapse" href="#collapseStatistics" class="job-list" aria-expanded="true" aria-controls="collapseStatistics">
+                                <div class="card-header" id="headingStatistics">
+                                    <h6 class="mb-0 text-dark f-18">Statistiques</h6>
+                                </div>
+                            </a>
+                            <div id="collapseStatistics" class="collapse show" aria-labelledby="headingStatistics">
+                                <div class="card-body p-0">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#" class="d-flex justify-content-between align-items-center text-muted">
+                                                Vues des offres <span class="badge badge-primary">{{ data.views }}</span>
+                                            </a>
+                                        </li>
+                                        
+                                    
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="col-lg-9">
+                <h4 class="text-dark">Bienvenue, Entreprise</h4>
+                <p class="text-muted">Voici un résumé de vos statistiques :</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Vues des offres</h5>
+                                <h2>{{ data.views }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                  
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h5 class="text-dark">Candidatures populaires :</h5>
+                        <ul class="list-unstyled">
+                            {% for applicant in data.topJobs %}
+                                
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
