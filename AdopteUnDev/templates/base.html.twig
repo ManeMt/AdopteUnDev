@@ -44,7 +44,7 @@
                 <!-- Tagline Start -->
                 <div class="tagline">
                     <div class="container">
-                        <div class="float-left">
+                        {# <div class="float-left">
                             <div class="phone">
                                 <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
                             </div>
@@ -53,10 +53,11 @@
                                     <i class="mdi mdi-email"></i> Support@mail.com
                                 </a>
                             </div>
-                        </div>
-                        <div class="float-right">
+                        </div> #}
+
+                        {# <div class="float-right">
                             <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                                {# <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.getusername() : 'Guest' }}</a></li> #}
+                                <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.getusername() : 'Guest' }}</a></li>
                                 <li class="list-inline-item">
                                    <select id="select-lang" class="demo-default" onchange="location = this.value;">
                                         <option value="" disabled selected>S'inscrire</option>
@@ -64,13 +65,47 @@
                                         <option value="{{ path('app_dev_register') }}">Développeur</option>
                                     </select>
 
+    
+
                                         <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">J'ai déjà un compte</small> <a href="{{ path('app_login') }}" class="text-dark font-weight-bold">Se connecter</a></p>
+                                            <p class="mb-0 mt-3" style="color: white;">
+                                                <small class="mr-2">J'ai déjà un compte</small> <a href="{{ path('app_login') }}" class="font-weight-bold" style="color: white;">Se connecter</a>
+                                            </p>
                                         </div>
                                     </select>
                                 </li>
                             </ul>
-                        </div>
+                        </div> #}
+
+                        <div class="float-right">
+    <ul class="topbar-list list-unstyled d-flex align-items-center" style="margin: 11px 0px;">
+        <!-- Affichage de l'utilisateur -->
+        <li class="list-inline-item mr-3">
+            <a href="javascript:void(0);" class="text-white">
+                <i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.getusername() : 'Guest' }}
+            </a>
+        </li>
+        
+        <!-- Sélecteur de langue -->
+        <li class="list-inline-item">
+             <select id="select-lang" class="demo-default" onchange="location = this.value;">
+                                        <option value="" disabled selected>S'inscrire</option>
+                                        <option value="{{ path('app_company_register') }}">Entreprise</option>
+                                        <option value="{{ path('app_dev_register') }}">Développeur</option>
+                                    </select>
+        </li>
+
+        <!-- Lien de connexion -->
+        <li class="list-inline-item ml-3">
+            <p class="mb-0 mt-1" style="color: white;">
+                <small class="mr-2">J'ai déjà un compte</small> 
+                <a href="{{ path('app_login') }}" class="font-weight-bold" style="color: white;">Se connecter</a>
+            </p>
+        </li>
+    </ul>
+</div>
+
+
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -86,7 +121,7 @@
                         </a>
                     </div>                 
                     <div class="buy-button">
-                        <a href="{{ path('app_job_add_new') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+                        <a href="{{ path('app_job_add_new') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i>Ajouter une offre</a>
                     </div><!--end login button-->
                     <!-- End Logo container-->
                     <div class="menu-extras">
@@ -103,13 +138,19 @@
                         </div>
                     </div>
                 
-                    {# <div id="navigation">
+                    <div id="navigation">
                         <!-- Navigation Menu-->   
                         <ul class="navigation-menu">
                             <li><a href="{{ path('home') }}">Accueil</a></li>
-                            <li><a href="{{ path('app_job_add_index') }}">Offres</a></li>
-                            
                             <li class="has-submenu">
+                                <a href="javascript:void(0)">Offres</a><span class="menu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="{{ path('app_job_add_index') }}">Mes offres</a></li>
+                                    <li><a href="{{ path('app_job_add_new') }}">AJouter une offre</a></li>
+                                </ul>
+                    
+                            </li>
+                            {# <li class="has-submenu">
                                 <a href="javascript:void(0)">Candidates</a><span class="menu-arrow"></span>
                                 <ul class="submenu">
                                     <li><a href="{{ path('candidates_listing') }}">Candidates Listing</a></li>
@@ -123,10 +164,10 @@
                                     <li><a href="{{ path('employers_list') }}">Employers List</a></li>
                                     <li><a href="{{ path('company_detail') }}">Company Detail</a></li>
                                 </ul>
-                            </li>
+                            </li> #}
 
-                            <li class="has-submenu"> #}
-                                {# <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                            {# <li class="has-submenu"> 
+                                <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
                                 <ul class="submenu">
                                     <li><a href="{{ path('about') }}">About us</a></li>
                                     <li><a href="{{ path('services') }}">Services</a></li>
@@ -139,8 +180,8 @@
                                             <li><a href="{{ path('blog_grid') }}">Blogs</a></li>
                                             <li><a href="{{ path('blog_sidebar') }}">Blog Sidebar</a></li>
                                             <li><a href="{{ path('blog_details') }}">Blog Details</a></li>
-                                        </ul>   #}
-                                    {# </li>
+                                        </ul>  
+                                    </li>
                                 
                                     <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
                                         <ul class="submenu">
@@ -148,10 +189,10 @@
                                             <li><a href="{{ path('signup') }}">Signup</a></li>
                                             <li><a href="{{ path('password_recovery') }}">Forgot Password</a></li>
                                         </ul>  
-                                    </li> #}
-                                    {# <li><a href="{{ path('components') }}"> Components</a></li> #}
+                                    </li>
+                                    <li><a href="{{ path('components') }}"> Components</a></li>
                                 </ul>
-                            </li>
+                            </li> #}
                         
                             <li>
                                 {# <a href="{{ path('contact') }}">Contact</a> #}
@@ -192,7 +233,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                         <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                        <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
+                        <p class="mt-4"></p>
                         <ul class="social-icon social list-inline mb-0">
                             <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
                             <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>

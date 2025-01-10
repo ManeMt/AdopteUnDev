@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}JobAdd{% endblock %}
 
@@ -35,4 +35,76 @@
     <a href="{{ path('app_job_add_edit', {'id': job_add.id}) }}">edit</a>
 
     {{ include('job_add/_delete_form.html.twig') }}
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Job Details{% endblock %}
+
+{% block body %}
+<!-- Start home -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Consulter offre</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                            <li><a href="{{ path('home') }}" class="text-uppercase font-weight-bold">Accueil</a></li>
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Consulter offre</span> 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <!-- Job Details Section -->
+            <div class="text-center mb-4">
+                <h1 class="card-title">
+                    <i class="mdi mdi-briefcase-outline"></i>  Description de l'offre
+                </h1>
+            </div>
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item">
+                    <strong>Référence:</strong> {{ job_add.id }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Titre du poste:</strong> {{ job_add.postTitle }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Niveau requis:</strong> {{ job_add.level }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Salaire:</strong> {{ job_add.salary }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Description:</strong> {{ job_add.description }}
+                </li>
+            </ul>
+
+            <!-- Action Buttons Section -->
+            <div class="text-center">
+                <a href="{{ path('app_job_add_index') }}" class="btn btn-outline-primary me-2">
+                    <i class="mdi mdi-arrow-left"></i> Retour
+                </a>
+                <a href="{{ path('app_job_add_edit', {'id': job_add.id}) }}" class="btn btn-primary me-2">
+                    <i class="mdi mdi-pencil"></i> Editer
+                </a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('delete-job-form').submit();" class="btn btn-danger me-2">
+    <i class="mdi mdi-delete"></i> Supprimer
+</a>
+<form id="delete-job-form" method="post" action="{{ path('app_job_add_delete', {'id': job_add.id}) }}" style="display: none;">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ job_add.id) }}">
+</form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
