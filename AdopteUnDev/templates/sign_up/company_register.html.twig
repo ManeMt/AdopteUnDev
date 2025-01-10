@@ -32,8 +32,13 @@
                                 {% endfor %}
 
                                 {{ form_start(form) }}
-        
-        <div class="form-group mb-3">
+        <div class="form-group mb-2">
+            {{ form_label(form.name, "Nom de l'entreprise", {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Renseignez le nom de votre entreprise'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="form-group mb-2">
             {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
             {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre adresse email'}}) }}
             {{ form_errors(form.email) }}
@@ -45,13 +50,13 @@
         </div>
         {% endfor %}
 
-        <div class="form-group mb-3">
+        <div class="form-group mb-2">
             {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
             {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre mot de passe'}}) }}
             {{ form_errors(form.password) }}
         </div>
 
-        {# <div class="form-group mb-3">
+        {# <div class="form-group mb-2">
             {{ form_label(form.roles, 'Rôle utilisateur', {'label_attr': {'class': 'form-label'}}) }}
             <div class="form-check">
                 {{ form_widget(form.roles, {'attr': {'class': 'form-check-input'}}) }}

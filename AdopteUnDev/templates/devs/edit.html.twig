@@ -1,13 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Developer{% endblock %}
+{% block title %}Create Resume{% endblock %}
+
+{% block stylesheets %}
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Developer</h1>
+<section class="bg-half page-next-level">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Create Resume</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    {{ include('devs/_form.html.twig', {'button_label': 'Update'}) }}
+<section class="section">
+    <div class="container">
+        <h2 class="text-center">Create Your Developer Profile</h2>
+        <div class="custom-form p-4 border rounded">
+            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
 
-    <a href="{{ path('app_developer_index') }}">back to list</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.firstName) }}
+                        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.lastName) }}
+                        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
 
-    {{ include('devs/_delete_form.html.twig') }}
+            <div class="form-group">
+                {{ form_label(form.programingLanguages) }}
+                {{ form_widget(form.programingLanguages, {'attr': {'class': 'form-check form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.level) }}
+                {{ form_widget(form.level, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.minSalary) }}
+                {{ form_widget(form.minSalary, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.biography) }}
+                {{ form_widget(form.biography, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.avatar) }}
+                {{ form_widget(form.avatar, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</section>
 {% endblock %}

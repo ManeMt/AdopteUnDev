@@ -56,7 +56,7 @@ final class CompanyController extends AbstractController{
         if ($request->isMethod('POST')) {
             // Récupérez les données du formulaire
             $company->setName($request->request->get('name'));
-            $company->setIndustry($request->request->get('industry'));
+            // $company->setIndustry($request->request->get('industry'));
             $company->setDescription($request->request->get('description'));
             $company->setLocation($request->request->get('location'));
             $company->setWebsite($request->request->get('website'));
@@ -93,9 +93,9 @@ final class CompanyController extends AbstractController{
         return $this->render('company/createprofile.html.twig');
     }
   
-        #[Route('/dashboard', name: 'company_dashboard', methods: ['GET'])]
-        public function resume (): Response
-        {
+    #[Route('/dashboard', name: 'company_dashboard', methods: ['GET'])]
+    public function resume (): Response
+    {
             // Données simulées pour l'entreprise
             $data = [
                 'views' => 220, // Nombre de vues des fiches de poste
@@ -151,7 +151,7 @@ final class CompanyController extends AbstractController{
     public function edit(Request $request, Company $company, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(CompanyType::class, $company);
-        $company->setUser($user);
+        // $company->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -164,7 +164,7 @@ final class CompanyController extends AbstractController{
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('companies/edit.html.twig', [

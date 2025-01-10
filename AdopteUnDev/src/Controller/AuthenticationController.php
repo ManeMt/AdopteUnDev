@@ -29,7 +29,7 @@ class AuthenticationController extends AbstractController
     public function profile()
     {
         $user = $this->getUser();
-       
+    //    dd($user);
         if(!$user){
             return null;
         }
@@ -37,14 +37,20 @@ class AuthenticationController extends AbstractController
         $viewFile = 'index.html.twig';
         $viewDir = 'devs';
         if(in_array('ROLE_COMPANY',$user->getRoles())){
-            $viewDir = 'companies';
+          
             if(!$user->isCompleteProfile()){
-                return $this->redirectToRoute("app_company_new");
+                return $this->redirectToRoute("app_company_edit",["id"=> $user->getId()]);
+            }else{
+                return $this->redirectToRoute("company_dashboard");
+            }
+        }else{
+            if(!$user->isCompleteProfile()){
+                return $this->redirectToRoute("app_developer_edit",["id"=> $user->getId()]);
+            }else{
+                return $this->redirectToRoute("developer_dashboard");
             }
         }
-        if(!$user->isCompleteProfile()){
-            return $this->redirectToRoute("app_developer_new");
-        }
+        
 
         return $this->render("profiles/$viewDir/$viewFile");
     }

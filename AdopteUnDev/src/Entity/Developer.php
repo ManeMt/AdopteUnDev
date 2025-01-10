@@ -23,6 +23,9 @@ class Developer extends User
     #[ORM\Column(nullable: true)]
     private ?int $level = null;
 
+    #[ORM\Column(type: 'integer', options: ["default" => 0])]
+    private int $numberView = 0;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
@@ -81,6 +84,23 @@ class Developer extends User
         $this->minSalary = $minSalary;
 
         return $this;
+    }
+
+    public function getNumberView(): ?int
+    {
+        return $this->numberView;
+    }
+
+    public function setNumberView(?int $numberView): static
+    {
+        $this->numberView = $numberView;
+
+        return $this;
+    }
+
+    public function incrementNumberView(): void
+    {
+        $this->numberView++;
     }
 
     public function getLevel(): ?int
