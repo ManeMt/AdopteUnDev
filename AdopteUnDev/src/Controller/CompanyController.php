@@ -71,7 +71,7 @@ final class CompanyController extends AbstractController{
         if ($request->isMethod('POST')) {
             // Récupérez les données du formulaire
             $company->setName($request->request->get('name'));
-            $company->setIndustry($request->request->get('industry'));
+            // $company->setIndustry($request->request->get('industry'));
             $company->setDescription($request->request->get('description'));
             $company->setLocation($request->request->get('location'));
             $company->setWebsite($request->request->get('website'));
