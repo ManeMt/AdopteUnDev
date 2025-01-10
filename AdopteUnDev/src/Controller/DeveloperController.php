@@ -23,20 +23,15 @@ final class DeveloperController extends AbstractController{
     }
 
     #[Route('/new', name: 'app_developer_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager ): Response
     {
         $developer = new Developer();
         $form = $this->createForm(DeveloperType::class, $developer);
-        $developer->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Mettre à jour l'attribut completeProfile de l'utilisateur
-            if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
-                    $user->setCompleteProfile(true);
-                    $entityManager->persist($user);
-            }
 
             $avatarFile = $form->get('avatar')->getData();
 
@@ -68,15 +63,30 @@ final class DeveloperController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_developer_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Developer $developer, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Developer $developer, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(DeveloperType::class, $developer);
+        $developer->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
+                $user->setCompleteProfile(true);
+                $entityManager->persist($user);
+            }
+
+            $avatarFile = $form->get('avatar')->getData();
+
+            if ($avatarFile) {
+                 $uploadDir = $this->getParameter('kernel.project_dir') . '/public/uploads/avatars';
+                 $newFilename = uniqid() . '.' . $avatarFile->guessExtension();
+                 $avatarFile->move($uploadDir, $newFilename);
+                 $developer->setAvatar($newFilename);
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('devs/edit.html.twig', [

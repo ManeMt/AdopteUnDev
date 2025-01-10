@@ -23,20 +23,17 @@ final class CompanyController extends AbstractController{
     }
 
     #[Route('/new', name: 'app_company_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
-        $company->setUser($user);
+    
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Mettre à jour l'attribut completeProfile de l'utilisateur
-            if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
-                $user->setCompleteProfile(true);
-                $entityManager->persist($user);
-            }
+        
             
             $entityManager->persist($company);
             $entityManager->flush();
@@ -59,15 +56,23 @@ final class CompanyController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Company $company, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Company $company, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(CompanyType::class, $company);
+        $company->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+             // Mettre à jour l'attribut completeProfile de l'utilisateur
+             if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
+                $user->setCompleteProfile(true);
+                $entityManager->persist($user);
+            }
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('companies/edit.html.twig', [
