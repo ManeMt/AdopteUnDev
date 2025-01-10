@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Edit JobAdd{% endblock %}
 
@@ -10,4 +10,94 @@
     <a href="{{ path('app_job_add_index') }}">back to list</a>
 
     {{ include('job_add/_delete_form.html.twig') }}
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit JobAdd{% endblock %}
+
+{% block body %}
+<!-- Start home -->
+<section class="bg-half page-next-level">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Modifier l'offre</h4>
+                    <ul class="page-next d-inline-block mb-0">
+                        <li><a href="{{ path('home') }}" class="text-uppercase font-weight-bold">Accueil</a></li>
+                        <li>
+                            <span class="text-uppercase text-white font-weight-bold">Modifier l'offre</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end home -->
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <!-- Job Edit Section -->
+            <div class="text-center mb-4">
+                <h1 class="card-title">
+                    <i class="mdi mdi-briefcase-edit-outline"></i> Modifier l'offre
+                </h1>
+            </div>
+
+            <!-- Formulaire d'édition -->
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.postTitle, 'Titre du poste', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.postTitle, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le titre du poste'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.level, 'Niveau requis', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.level, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le niveau requis'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.salary, 'Salaire', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.salary, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le salaire'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Entrez la description', 'rows': 5}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.location, 'Localisation', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.programingLanguages, 'Langages de programmation', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.programingLanguages, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="mdi mdi-content-save"></i> Mettre à jour
+                    </button>
+                    <a href="{{ path('app_job_add_index') }}" class="btn btn-outline-secondary me-2">
+                        <i class="mdi mdi-arrow-left"></i> Retour
+                    </a>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('delete-job-form').submit();" class="btn btn-danger">
+                        <i class="mdi mdi-delete"></i> Supprimer
+                    </a>
+                </div>
+            {{ form_end(form) }}
+
+            <!-- Formulaire de suppression -->
+            <form id="delete-job-form" method="post" action="{{ path('app_job_add_delete', {'id': job_add.id}) }}" style="display: none;">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ job_add.id) }}">
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

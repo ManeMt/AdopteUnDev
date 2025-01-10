@@ -79,32 +79,36 @@
 
                         <div class="float-right">
     <ul class="topbar-list list-unstyled d-flex align-items-center" style="margin: 11px 0px;">
-        <!-- Affichage de l'utilisateur -->
-        <li class="list-inline-item mr-3">
-            <a href="javascript:void(0);" class="text-white">
-                <i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.userIdentifier : 'Guest' }}
-            </a>
+    <!-- Affichage de l'utilisateur -->
+    <li class="list-inline-item mr-3">
+        <a href="javascript:void(0);" class="text-white">
+            <i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.userIdentifier : 'Guest' }}
+        </a>
+    </li>
+    
+    {% if app.user %}
+        <!-- Si l'utilisateur est connecté, afficher le bouton de déconnexion -->
+        <li class="list-inline-item ml-3">
+            <a href="{{ path('app_logout') }}" class="font-weight-bold" style="color: white;">Se déconnecter</a>
         </li>
-        
-        <!-- Sélecteur de langue -->
+    {% else %}
+        <!-- Si l'utilisateur n'est pas connecté, afficher le sélecteur de langue et le lien de connexion -->
         <li class="list-inline-item">
-             <select id="select-lang" class="demo-default" onchange="location = this.value;">
-                                        <option value="" disabled selected>S'inscrire</option>
-                                        <option value="{{ path('app_company_register') }}">Entreprise</option>
-                                        <option value="{{ path('app_dev_register') }}">Développeur</option>
-                                    </select>
+            <select id="select-lang" class="demo-default" onchange="location = this.value;">
+                <option value="" disabled selected>S'inscrire</option>
+                <option value="{{ path('app_company_register') }}">Entreprise</option>
+                <option value="{{ path('app_dev_register') }}">Développeur</option>
+            </select>
         </li>
 
-        <!-- Lien de connexion -->
         <li class="list-inline-item ml-3">
             <p class="mb-0 mt-1" style="color: white;">
                 <small class="mr-2">J'ai déjà un compte</small> 
                 <a href="{{ path('app_login') }}" class="font-weight-bold" style="color: white;">Se connecter</a>
             </p>
         </li>
-    </ul>
-</div>
-
+    {% endif %}
+</ul>
 
                         <div class="clearfix"></div>
                     </div>
@@ -120,9 +124,9 @@
                             <img src="{{ asset('images/Adopte1Dev-banners-1.png') }}" alt="" class="logo-dark" height="18" />
                         </a>
                     </div>                 
-                    <div class="buy-button">
+                    {# <div class="buy-button">
                         <a href="{{ path('app_job_add_new') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i>Ajouter une offre</a>
-                    </div><!--end login button-->
+                    </div><!--end login button--> #}
                     <!-- End Logo container-->
                     <div class="menu-extras">
                         <div class="menu-item">
@@ -142,14 +146,18 @@
                         <!-- Navigation Menu-->   
                         <ul class="navigation-menu">
                             <li><a href="{{ path('home') }}">Accueil</a></li>
-                            <li class="has-submenu">
+                            <li><a href="{{ path('app_job_add_index') }}">Offres</a></li>
+                             <li><a href="{{ path('app_company_index') }}">Entreprises</a></li>
+                            <li><a href="{{ path('app_developer_index') }}">Développeurs</a></li>
+
+                            {# <li class="has-submenu">
                                 <a href="javascript:void(0)">Offres</a><span class="menu-arrow"></span>
                                 <ul class="submenu">
                                     <li><a href="{{ path('app_job_add_index') }}">Mes offres</a></li>
                                     <li><a href="{{ path('app_job_add_new') }}">AJouter une offre</a></li>
                                 </ul>
                     
-                            </li>
+                            </li> #}
                             {# <li class="has-submenu">
                                 <a href="javascript:void(0)">Candidates</a><span class="menu-arrow"></span>
                                 <ul class="submenu">
