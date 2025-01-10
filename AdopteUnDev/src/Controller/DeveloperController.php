@@ -57,7 +57,7 @@ final class DeveloperController extends AbstractController{
     #[Route('/developer-createprofile', name: 'app_developer-createprofile', methods: ['GET'])]
     public function test(): Response
     {
-        return $this->render('developer/createprofile.html.twig', [
+        return $this->render('devs/createprofile.html.twig', [
             
         ]);
     }
@@ -99,7 +99,7 @@ final class DeveloperController extends AbstractController{
             ];
     
             // Affichage de la vue Twig
-            return $this->render('developer/profile.html.twig', [
+            return $this->render('devs/profile.html.twig', [
                 'developer' => $developer,
             ]);
         }
@@ -120,7 +120,7 @@ final class DeveloperController extends AbstractController{
     public function edit(Request $request, Developer $developer, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(DeveloperType::class, $developer);
-        $developer->setUser($user);
+        // $developer->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,7 +140,7 @@ final class DeveloperController extends AbstractController{
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('developer_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('devs/edit.html.twig', [

@@ -31,27 +31,49 @@
                                     <div class="alert alert-success">{{ message }}</div>
                                 {% endfor %}
 
-                                {{ form_start(form) }}
-        
-        <div class="form-group mb-3">
-            {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre adresse email'}}) }}
-            {{ form_errors(form.email) }}
-        </div>
+            {{ form_start(form) }}
+                <div class="form-group mb-2">
+                   <div class="form-row">
+                        <div class="col-6">
+                            {{ form_label(form.lastName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Henry'}}) }}
+                            {{ form_errors(form.lastName) }}
+                        </div>
 
-        {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-             {{ message }}
-        </div>
-        {% endfor %}
+                        <div class="col-6">
+                            {{ form_label(form.firstName, 'Prénoms', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Dupont'}}) }}
+                            {{ form_errors(form.firstName) }}
+                        </div>
+                   </div>
+                </div>   
+                
+            
+                <div class="form-group mb-2">
+                    {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre adresse email'}}) }}
+                    {{ form_errors(form.email) }}
+                </div>
 
-        <div class="form-group mb-3">
-            {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre mot de passe'}}) }}
-            {{ form_errors(form.password) }}
-        </div>
+                {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endfor %}
 
-        {# <div class="form-group mb-3">
+                <div class="form-group mb-2">
+                    {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre mot de passe'}}) }}
+                    {{ form_errors(form.password) }}
+                </div>
+    
+                {# <div class="form-group mb-2">
+                    {{ form_label(form.passwordConfirm, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.passwordConfirm, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre mot de passe'}}) }}
+                    {{ form_errors(form.passwordConfirm) }}
+                </div> #}
+
+        {# <div class="form-group mb-2">
             {{ form_label(form.roles, 'Rôle utilisateur', {'label_attr': {'class': 'form-label'}}) }}
             <div class="form-check">
                 {{ form_widget(form.roles, {'attr': {'class': 'form-check-input'}}) }}

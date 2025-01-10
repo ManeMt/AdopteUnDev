@@ -1,15 +1,17 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Company;
 use App\Entity\Developer;
-use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\RegistrationDevType;
+use App\Form\RegistrationCompanyType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
@@ -18,7 +20,7 @@ class RegistrationController extends AbstractController
     public function devRegister(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new Developer();
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(RegistrationDevType::class, $user);
        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,7 +51,7 @@ class RegistrationController extends AbstractController
     public function companyRegister(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new Company();
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(RegistrationCompanyType::class, $user);
        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
