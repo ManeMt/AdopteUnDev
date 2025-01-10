@@ -32,6 +32,10 @@ class Developer extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
+    #[ORM\ManyToOne(inversedBy: 'developers')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Location $location = null;
+
     /**
      * @var Collection<int, ProgramingLanguage>
      */
@@ -135,6 +139,17 @@ class Developer extends User
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+    public function setLocation(?Location $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }
