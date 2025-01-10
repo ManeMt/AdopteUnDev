@@ -11,34 +11,44 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Repository\JobAddRepository;
 
 #[Route('/developer')]
 final class DeveloperController extends AbstractController{
     #[Route(name: 'app_developer_index', methods: ['GET'])]
     public function index(DeveloperRepository $developerRepository): Response
     {
-        return $this->render('developer/index.html.twig', [
+        return $this->render('devs/index.html.twig', [
             'developers' => $developerRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_developer_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager ): Response
     {
         $developer = new Developer();
         $form = $this->createForm(DeveloperType::class, $developer);
-        $developer->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Mettre à jour l'attribut completeProfile de l'utilisateur
+
+            $avatarFile = $form->get('avatar')->getData();
+
+            if ($avatarFile) {
+                $uploadDir = $this->getParameter('kernel.project_dir') . '/public/uploads/avatars';
+                $newFilename = uniqid() . '.' . $avatarFile->guessExtension();
+                $avatarFile->move($uploadDir, $newFilename);
+                $developer->setAvatar($newFilename);
+            }
+            
             $entityManager->persist($developer);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('developer/new.html.twig', [
+        return $this->render('devs/new.html.twig', [
             'developer' => $developer,
             'form' => $form,
         ]);
@@ -52,15 +62,27 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
-    #[Route('/developer/dashboard', name: 'developer_dashboard')]
-    public function developerDashboard(JobAddRepository $jobAddRepository):Response
-    {
     
-    
-        return $this->render('developer/dashboard.html.twig', [
-             
-      ]);
-    }
+            #[Route('/dashboard', name: 'developer_dashboard', methods: ['GET'])]
+            public function ex(): Response
+            {
+                // Données simulées pour le développeur
+                $data = [
+                    'views' => 120, // Nombre de vues du profil
+                    'topProfiles' => [
+                        ['name' => 'John Doe', 'views' => 340],
+                        ['name' => 'Jane Smith', 'views' => 300],
+                    ],
+                ];
+        
+                return $this->render('devs/dashboard.html.twig', [
+                    'data' => $data,
+                ]);
+            }
+        
+        
+            
+     
 
         #[Route('/profile', name: 'developer_profile', methods: ['GET'])]
         public function affiche (): Response
@@ -89,31 +111,43 @@ final class DeveloperController extends AbstractController{
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
     public function show(Developer $developer): Response
     {
-        return $this->render('developer/show.html.twig', [
+        return $this->render('devs/show.html.twig', [
             'developer' => $developer,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_developer_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Developer $developer, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Developer $developer, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(DeveloperType::class, $developer);
+        $developer->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
+                $user->setCompleteProfile(true);
+                $entityManager->persist($user);
+            }
+
+            $avatarFile = $form->get('avatar')->getData();
+
+            if ($avatarFile) {
+                 $uploadDir = $this->getParameter('kernel.project_dir') . '/public/uploads/avatars';
+                 $newFilename = uniqid() . '.' . $avatarFile->guessExtension();
+                 $avatarFile->move($uploadDir, $newFilename);
+                 $developer->setAvatar($newFilename);
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('developer/edit.html.twig', [
+        return $this->render('devs/edit.html.twig', [
             'developer' => $developer,
             'form' => $form,
         ]);
     }
-
-    
-    
 
     #[Route('/{id}', name: 'app_developer_delete', methods: ['POST'])]
     public function delete(Request $request, Developer $developer, EntityManagerInterface $entityManager): Response
@@ -125,7 +159,4 @@ final class DeveloperController extends AbstractController{
 
         return $this->redirectToRoute('app_developer_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-
 }
