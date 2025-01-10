@@ -45,8 +45,10 @@ final class JobAddController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_job_add_show', methods: ['GET'])]
-    public function show(JobAdd $jobAdd): Response
+    public function show(JobAdd $jobAdd, EntityManagerInterface $entityManager): Response
     {
+        $jobAdd->incrementNumberView();
+        $entityManager->flush();
         return $this->render('job_add/show.html.twig', [
             'job_add' => $jobAdd,
         ]);

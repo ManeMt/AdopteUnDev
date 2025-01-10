@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Resume{% endblock %}
+
+{% block stylesheets %}
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+    {# <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div> #}
+    </div>
+
+
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Create Resume</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Create Your Developer Profile</h2>
+            <div class="custom-form p-4 border rounded">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name">
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" class="form-control" placeholder="City, Country">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Programming Languages -->
+                    <div class="form-group">
+                        <label for="languages">Programming Languages</label>
+                        <select id="languages" name="languages[]" class="form-control" multiple>
+                            <option value="php">PHP</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                        </select>
+                    </div>
+
+                    <!-- Experience Level -->
+                    <div class="form-group">
+                        <label for="experience">Experience Level</label>
+                        <select id="experience" name="experience" class="form-control">
+                            <option value="1">1 - Beginner</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 - Expert</option>
+                        </select>
+                    </div>
+
+                    <!-- Desired Salary -->
+                    <div class="form-group">
+                        <label for="salary">Minimum Desired Salary</label>
+                        <input type="number" id="salary" name="salary" class="form-control" placeholder="Enter amount in euros">
+                    </div>
+
+                    <!-- Biography -->
+                    <div class="form-group">
+                        <label for="biography">Short Biography</label>
+                        <textarea id="biography" name="biography" class="form-control" rows="4" placeholder="Tell us about yourself"></textarea>
+                    </div>
+
+                    <!-- Avatar -->
+                    <div class="form-group">
+                        <label for="avatar">Upload Avatar</label>
+                        <input type="file" id="avatar" name="avatar" class="form-control">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{# {% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/plugins.js') }}"></script>
+    <script src="{{ asset('js/selectize.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %} #}

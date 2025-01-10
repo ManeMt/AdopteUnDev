@@ -58,12 +58,15 @@
                             <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
                                 {# <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.getusername() : 'Guest' }}</a></li> #}
                                 <li class="list-inline-item">
-                                    <select id="select-lang" class="demo-default">
-                                        <option value="">Language</option>
-                                        <option value="4">English</option>
-                                        <option value="1">Spanish</option>
-                                        <option value="3">French</option>
-                                        <option value="5">Hindi</option>
+                                   <select id="select-lang" class="demo-default" onchange="location = this.value;">
+                                        <option value="" disabled selected>S'inscrire</option>
+                                        <option value="{{ path('app_company_register') }}">Entreprise</option>
+                                        <option value="{{ path('app_dev_register') }}">Développeur</option>
+                                    </select>
+
+                                        <div class="col-12 text-center">
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">J'ai déjà un compte</small> <a href="{{ path('app_login') }}" class="text-dark font-weight-bold">Se connecter</a></p>
+                                        </div>
                                     </select>
                                 </li>
                             </ul>
@@ -83,7 +86,7 @@
                         </a>
                     </div>                 
                     <div class="buy-button">
-                        <a href="{{ path('post_job') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+                        <a href="{{ path('app_job_add_new') }}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
                     </div><!--end login button-->
                     <!-- End Logo container-->
                     <div class="menu-extras">
