@@ -39,6 +39,7 @@ class AuthenticationController extends AbstractController
         if(in_array('ROLE_COMPANY',$user->getRoles())){
           
             if(!$user->isCompleteProfile()){
+                $this->addFlash('error', 'Un compte avec cet email existe déjà.');
                 return $this->redirectToRoute("app_company_edit",["id"=> $user->getId()]);
             }else{
                 return $this->redirectToRoute("company_dashboard");
