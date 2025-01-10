@@ -20,7 +20,7 @@
                             <p class="text-muted mb-0">
                                 Compétences :
                                 {% for skill in developer.programingLanguages %}
-                                    {{ skill.name }}{% if not loop.last %}, {% endif %}
+                                    {{ skill.entitled }}{% if not loop.last %}, {% endif %}
                                 {% endfor %}
                             </p>
                         </div>
