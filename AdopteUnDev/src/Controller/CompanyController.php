@@ -34,7 +34,22 @@ final class CompanyController extends AbstractController{
 
             // Mettre à jour l'attribut completeProfile de l'utilisateur
         
-            
+            $logoFile = $this->fileUpload($form->get('logo')->getData());
+            $company->setLogo($logoFile);
+            $bannerFile = $this->fileUpload($form->get('banner')->getData());
+            $company->setLogo($bannerFile);
+    
+            $imageFiles = $form->get('images')->getData();
+            $images = [];
+            foreach ($imageFiles as $key => $image) {
+                $images[] = $this->fileUpload($image);
+
+            }
+            if(count($images) > 0){
+                $company->setImages($images);
+            }
+            // $company->setLogo($logoFile);
+            $entityManager->flush();
             $entityManager->persist($company);
             $entityManager->flush();
 
@@ -131,7 +146,7 @@ final class CompanyController extends AbstractController{
                 ],
             ];
         
-            return $this->render('company/profile.html.twig', [
+            return $this->render('companies/profile.html.twig', [
                 'company' => $company,
             ]);
         

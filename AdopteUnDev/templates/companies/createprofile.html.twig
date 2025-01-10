@@ -2,48 +2,25 @@
 
 {% block title %}Create Company Profile{% endblock %}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
-<div id="preloader">
+{# <div id="preloader">
     <div id="status">
         <div class="spinner">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
     </div>
-</div>
+</div> #}
 
-<header id="topnav" class="defaultscroll scroll-active">
-    <div class="tagline">
-        <div class="container">
-            <div class="float-left">
-                <div class="phone"><i class="mdi mdi-phone-classic"></i> +1 800 123 45 67</div>
-                <div class="email"><a href="#"><i class="mdi mdi-email"></i> Support@mail.com</a></div>
-            </div>
-            <div class="float-right">
-                <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                    <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
-                    <li class="list-inline-item">
-                        <select id="select-lang" class="demo-default">
-                            <option value="">Language</option>
-                            <option value="4">English</option>
-                            <option value="1">Spanish</option>
-                            <option value="3">French</option>
-                            <option value="5">Hindi</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-
+{# <header id="topnav" class="defaultscroll scroll-active"> #}
+   
 <section class="bg-half page-next-level"> 
     <div class="bg-overlay"></div>
     <div class="container">
@@ -60,7 +37,10 @@
 <section class="section">
     <div class="container">
         <form method="post" action="{{ path('app_company-createprofile') }}" enctype="multipart/form-data">
-            <!-- Company Header -->
+          {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center">
                     <div class="form-group">

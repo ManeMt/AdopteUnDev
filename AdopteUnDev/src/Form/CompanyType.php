@@ -20,7 +20,7 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Company Name',
+                'label' => "Nom de l'entreprise",
             ])
             ->add('logo', FileType::class, [
                 'label' => 'Logo',
@@ -29,13 +29,13 @@ class CompanyType extends AbstractType
                 'attr' => ['accept' => 'image/*'],
             ])
             ->add('banner', FileType::class, [
-                'label' => 'Banner',
+                'label' => 'Image de banière',
                 'required' => false,
                 'mapped' => false,
                 'attr' => ['accept' => 'image/*'],
             ])
             ->add('images', FileType::class, [
-                'label' => 'Images (multiple)',
+                'label' => 'Autres images (multiple)',
                 'required' => false,
                 'mapped' => false,
                 'multiple' => true,
@@ -46,20 +46,20 @@ class CompanyType extends AbstractType
                 'required' => false,
             ])
             ->add('contact', TextType::class, [
-                'label' => 'Contact Information',
+                'label' => 'Contact',
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Company Description',
+                'label' => 'Brève Description',
             ])
             ->add('sector', EntityType::class, [
                 'class' => Sector::class,
                 'choice_label' => 'entitled',
-                'label' => 'Sector',
+                'label' => 'Secteur d\' activité',
             ])
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'entitled',
-                'label' => 'Location',
+                'label' => 'Localisation / Ville',
             ])
         ;
     }
