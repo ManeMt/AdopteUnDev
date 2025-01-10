@@ -26,13 +26,10 @@ class JobAddType extends AbstractType
             ])
             ->add('programingLanguages', EntityType::class, [
                 'class' => ProgramingLanguage::class,
-                'choice_label' => 'id',
+                'choice_label' => 'entitled',
                 'multiple' => true,
             ])
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-                'choice_label' => 'id',
-            ])
+        
         ;
     }
 
