@@ -27,12 +27,12 @@
                                         </li>
                                         <li>
                                             <a href="#" class="d-flex justify-content-between align-items-center text-muted">
-                                                Candidatures rȩues <span class="badge badge-primary">80</span>
+                                                Candidatures reçues <span class="badge badge-primary">80</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" class="d-flex justify-content-between align-items-center text-muted">
-                                                Offres publiées <span class="badge badge-primary">10</span>
+                                                Offres publiées <span class="badge badge-primary">10</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -48,7 +48,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="#" class="text-muted d-block py-2 pl-3">Mon Entreprise</a></li>
                                     <li><a href="#" class="text-muted d-block py-2 pl-3">Mes Offres</a></li>
-                                    <li><a href="#" class="text-muted d-block py-2 pl-3">Candidatures Rȩues</a></li>
+                                    <li><a href="#" class="text-muted d-block py-2 pl-3">Candidatures Reçues</a></li>
                                     <li><a href="#" class="text-muted d-block py-2 pl-3">Messagerie</a></li>
                                 </ul>
                             </div>
@@ -59,7 +59,12 @@
 
             <!-- Contenu principal -->
             <div class="col-lg-9">
-                <h4 class="text-dark">Bienvenue, Entreprise</h4>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="text-dark">Bienvenue, Entreprise</h4>
+                    <a href="{{ path('app_job_add_new') }}" class="btn btn-primary">
+                        <i class="mdi mdi-plus-circle"></i> Publier un poste
+                    </a>
+                </div>
                 <p class="text-muted">Voici un résumé de vos statistiques :</p>
 
                 <div class="row mt-4">
@@ -74,7 +79,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Candidatures rȩues</h5>
+                                <h5>Candidatures reçues</h5>
                                 <h2>80</h2>
                             </div>
                         </div>
@@ -82,7 +87,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Offres publiées</h5>
+                                <h5>Offres publiées</h5>
                                 <h2>10</h2>
                             </div>
                         </div>
@@ -122,10 +127,10 @@
                     </div>
                 </div>
 
-                <!-- Section : Candidats qui pourraient vous intéresser -->
+                <!-- Section : Candidats qui pourraient vous intéresser -->
                 <div class="row mt-5">
                     <div class="col-12">
-                        <h5 class="text-dark">Candidats qui pourraient vous intéresser :</h5>
+                        <h5 class="text-dark">Candidats qui pourraient vous intéresser :</h5>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
