@@ -35,7 +35,7 @@ final class JobAddController extends AbstractController
             $entityManager->persist($jobAdd);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_job_add_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('post_job/index.html.twig', [

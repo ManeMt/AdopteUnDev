@@ -80,14 +80,17 @@
                         <div class="float-right">
     <ul class="topbar-list list-unstyled d-flex align-items-center" style="margin: 11px 0px;">
     <!-- Affichage de l'utilisateur -->
-    <li class="list-inline-item mr-3">
-        <a href="javascript:void(0);" class="text-white">
-            <i class="mdi mdi-account mr-2"></i>{{ app.user ? app.user.userIdentifier : 'Guest' }}
-        </a>
-    </li>
+ 
+    
     
     {% if app.user %}
         <!-- Si l'utilisateur est connecté, afficher le bouton de déconnexion -->
+        <li class="list-inline-item mr-3">
+            <a href="{{ is_granted('ROLE_COMPANY') ? path('company_dashboard') : path('developer_dashboard') }}" class="text-white">
+                <i class="mdi mdi-account mr-2"></i>
+                {{ app.user ? app.user.userIdentifier : 'Guest' }}
+            </a>
+        </li>
         <li class="list-inline-item ml-3">
             <a href="{{ path('app_logout') }}" class="font-weight-bold" style="color: white;">Se déconnecter</a>
         </li>
