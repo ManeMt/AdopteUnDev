@@ -17,13 +17,13 @@ final class CompanyController extends AbstractController{
     #[Route(name: 'app_company_index', methods: ['GET'])]
     public function index(CompanyRepository $companyRepository): Response
     {
-        return $this->render('company/index.html.twig', [
+        return $this->render('companies/index.html.twig', [
             'companies' => $companyRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_company_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
@@ -31,6 +31,10 @@ final class CompanyController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Mettre à jour l'attribut completeProfile de l'utilisateur
+        
+            
             $entityManager->persist($company);
             $entityManager->flush();
 
@@ -42,7 +46,6 @@ final class CompanyController extends AbstractController{
             'form' => $form,
         ]);
     }
-    
 
     #[Route('/company-createprofile', name: 'app_company-createprofile', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $em): Response
@@ -139,24 +142,32 @@ final class CompanyController extends AbstractController{
     #[Route('/{id}', name: 'app_company_show', methods: ['GET'])]
     public function show(Company $company): Response
     {
-        return $this->render('company/show.html.twig', [
+        return $this->render('companies/show.html.twig', [
             'company' => $company,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Company $company, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Company $company, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $form = $this->createForm(CompanyType::class, $company);
+        $company->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+             // Mettre à jour l'attribut completeProfile de l'utilisateur
+             if ($user instanceof \App\Entity\User) { // Assurez-vous que $user est bien une instance de User
+                $user->setCompleteProfile(true);
+                $entityManager->persist($user);
+            }
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('company/edit.html.twig', [
+        return $this->render('companies/edit.html.twig', [
             'company' => $company,
             'form' => $form,
         ]);
@@ -173,9 +184,3 @@ final class CompanyController extends AbstractController{
         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
     }
 }
-
-
-
-
-
-
