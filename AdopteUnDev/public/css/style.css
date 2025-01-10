@@ -2495,6 +2495,13 @@ a.job-list[data-toggle=collapse].collapsed:before {
   overflow: hidden;
 }
 
+img.avatar-circle {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .contact-location {
   border: 1px solid #2f55d4;
   border-radius: 4px;
