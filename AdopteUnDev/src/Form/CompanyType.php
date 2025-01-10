@@ -53,7 +53,7 @@ class CompanyType extends AbstractType
             ])
             ->add('sector', EntityType::class, [
                 'class' => Sector::class,
-                'choice_label' => 'name',
+                'choice_label' => 'entitled',
                 'label' => 'Sector',
             ])
             ->add('location', EntityType::class, [

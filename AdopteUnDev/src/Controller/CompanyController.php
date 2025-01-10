@@ -37,7 +37,7 @@ final class CompanyController extends AbstractController{
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('company/new.html.twig', [
+        return $this->render('companies/new.html.twig', [
             'company' => $company,
             'form' => $form,
         ]);

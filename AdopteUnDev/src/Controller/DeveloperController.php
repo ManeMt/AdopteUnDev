@@ -28,7 +28,7 @@ final class DeveloperController extends AbstractController{
     {
         $developer = new Developer();
         $form = $this->createForm(DeveloperType::class, $developer);
-        $developer->setUser($user);
+      
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
