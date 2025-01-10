@@ -1,10 +1,9 @@
-{% extends 'base.html.twig' %}
- 
+
 {% block title %}Company index{% endblock %}
- 
+
 {% block body %}
     <h1>Company index</h1>
- 
+
     <table class="table">
         <thead>
             <tr>
@@ -42,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
- 
+
     <a href="{{ path('app_company_new') }}">Create new</a>
 {% endblock %}
+

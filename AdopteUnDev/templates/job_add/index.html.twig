@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}JobAdd index{% endblock %}
 
@@ -38,4 +38,58 @@
     </table>
 
     <a href="{{ path('app_job_add_new') }}">Create new</a>
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for job_add in job_adds %}
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="list-grid-item rounded">
+                        <div class="grid-item-content p-3">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item f-15">
+                                    <span class="badge badge-success">
+                                        {{ job_add.level == 'Full Time' ? 'Full Time' : 'Part Time' }}
+                                    </span>
+                                </li>
+                                <li class="list-inline-item float-right">
+                                    <div class="grid-fev-icon">
+                                        <a href="#" class="text-danger"><i class="mdi mdi-heart"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="grid-list-img mt-3">
+                                <!-- Placeholder image -->
+                                <img src="images/featured-job/img-placeholder.png" alt="{{ job_add.postTitle }}" class="img-fluid d-block">
+                            </div>
+                            <div class="grid-list-desc mt-3">
+                                <h5 class="mb-1">
+                                    <a href="{{ path('app_job_add_show', {'id': job_add.id}) }}" class="text-dark">
+                                        {{ job_add.postTitle }}
+                                    </a>
+                                </h5>
+                               <p class="text-muted f-14 mb-1">
+    {{ job_add.location is defined ? job_add.location.entitled : 'No location specified' }}
+</p>
+
+                                <p class="text-muted mb-1">${{ job_add.salary }}</p>
+                                <p class="text-muted mb-1">{{ job_add.description|length > 100 ? job_add.description|slice(0, 100) ~ '...' : job_add.description }}</p>
+                            </div>
+                        </div>
+
+                        <div class="apply-button p-3 border-top">
+                            <a href="{{ path('app_job_add_show', {'id': job_add.id}) }}" class="btn btn-primary btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12 text-center mt-4">
+                    <p class="text-muted">No job listings found.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

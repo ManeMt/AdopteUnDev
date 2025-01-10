@@ -54,6 +54,60 @@ final class DeveloperController extends AbstractController{
         ]);
     }
 
+    #[Route('/developer-createprofile', name: 'app_developer-createprofile', methods: ['GET'])]
+    public function test(): Response
+    {
+        return $this->render('developer/createprofile.html.twig', [
+            
+        ]);
+    }
+
+    
+            #[Route('/dashboard', name: 'developer_dashboard', methods: ['GET'])]
+            public function ex(): Response
+            {
+                // Données simulées pour le développeur
+                $data = [
+                    'views' => 120, // Nombre de vues du profil
+                    'topProfiles' => [
+                        ['name' => 'John Doe', 'views' => 340],
+                        ['name' => 'Jane Smith', 'views' => 300],
+                    ],
+                ];
+        
+                return $this->render('devs/dashboard.html.twig', [
+                    'data' => $data,
+                ]);
+            }
+        
+        
+            
+     
+
+        #[Route('/profile', name: 'developer_profile', methods: ['GET'])]
+        public function affiche (): Response
+        {
+            // Données simulées pour un développeur
+            $developer = [
+                'firstName' => 'John',
+                'lastName' => 'Doe',
+                'minSalary' => 60000,
+                'level' => 4,
+                'biography' => 'A passionate full-stack developer with 5 years of experience in web applications.',
+                'avatar' => 'default-avatar.png',
+                'programingLanguages' => ['PHP', 'JavaScript', 'Python']
+            ];
+    
+            // Affichage de la vue Twig
+            return $this->render('developer/profile.html.twig', [
+                'developer' => $developer,
+            ]);
+        }
+    
+    
+
+
+
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
     public function show(Developer $developer): Response
     {
