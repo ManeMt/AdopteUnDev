@@ -9,34 +9,25 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DeveloperRepository::class)]
-class Developer
+class Developer extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 40, nullable: true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $minSalary = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $level = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
-
-    #[ORM\OneToOne(inversedBy: 'developer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
 
     /**
      * @var Collection<int, ProgramingLanguage>
@@ -56,19 +47,12 @@ class Developer
         $this->yes = new ArrayCollection();
     }
 
-   
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -80,7 +64,7 @@ class Developer
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -92,7 +76,7 @@ class Developer
         return $this->minSalary;
     }
 
-    public function setMinSalary(float $minSalary): static
+    public function setMinSalary(?float $minSalary): static
     {
         $this->minSalary = $minSalary;
 
@@ -104,7 +88,7 @@ class Developer
         return $this->level;
     }
 
-    public function setLevel(int $level): static
+    public function setLevel(?int $level): static
     {
         $this->level = $level;
 
@@ -116,7 +100,7 @@ class Developer
         return $this->biography;
     }
 
-    public function setBiography(string $biography): static
+    public function setBiography(?string $biography): static
     {
         $this->biography = $biography;
 
@@ -131,18 +115,6 @@ class Developer
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): static
-    {
-        $this->user = $user;
 
         return $this;
     }
@@ -200,5 +172,4 @@ class Developer
 
         return $this;
     }
-
 }

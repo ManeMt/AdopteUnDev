@@ -25,21 +25,21 @@ class RegistrationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Entrez votre mot de passe',
                 ]
-            ])
-            ->add('roles', ChoiceType::class, [
-                'label' => 'Rôle utilisateur',
+                ]);
+            // ->add('roles', ChoiceType::class, [
+            //     'label' => 'Rôle utilisateur',
          
-                'choices' => [
-                    'Développeur' => 'ROLE_DEV',
-                    'Entreprise' => 'ROLE_COMPANY',
-                ],
-                'multiple' => false,
-                'expanded' => true, 
-                'attr' => [
-                    'class' => 'roles-radio ml-3',
-                ],
+            //     'choices' => [
+            //         'Développeur' => 'ROLE_DEV',
+            //         'Entreprise' => 'ROLE_COMPANY',
+            //     ],
+            //     'multiple' => false,
+            //     'expanded' => true, 
+            //     'attr' => [
+            //         'class' => 'roles-radio ml-3',
+            //     ],
             
-            ]);
+            // ]);
             
     }
 

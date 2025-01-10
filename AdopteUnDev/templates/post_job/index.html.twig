@@ -246,12 +246,12 @@
                     <div class="custom-form">
                         {{ form_start(form, {'attr': {'id': 'job-add-form', 'class': 'job-form'}}) }}
                         
-                        <h4 class="text-dark mb-3">Post a New Job:</h4>
+                        <h4 class="text-dark mb-3">Ajouter une offre:</h4>
                         
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="postTitle">Job Title</label>
+                                    <label class="text-muted" for="postTitle">Titre du poste</label>
                                     {{ form_widget(form.postTitle, {'attr': {'class': 'form-control resume', 'placeholder': 'Enter job title'}}) }}
                                 </div>
                             </div>
@@ -260,13 +260,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="level">Job Level</label>
+                                    <label class="text-muted" for="level">Niveau d'expérience requis</label>
                                     {{ form_widget(form.level, {'attr': {'class': 'form-control resume'}}) }}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="salary">Salary</label>
+                                    <label class="text-muted" for="salary">Salaire</label>
                                     {{ form_widget(form.salary, {'attr': {'class': 'form-control resume', 'placeholder': '$8000 - $20000'}}) }}
                                 </div>
                             </div>
@@ -275,22 +275,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="location">Location</label>
+                                    <label class="text-muted" for="location">Localisation</label>
                                     {{ form_widget(form.location, {'attr': {'class': 'nice-select rounded'}}) }}
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="company">Company</label>
-                                    {{ form_widget(form.company, {'attr': {'class': 'nice-select rounded'}}) }}
-                                </div>
-                            </div>
+            
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="programingLanguages">Programming Languages</label>
+                                    <label class="text-muted" for="programingLanguages">Technologies recherchées</label>
                                     {{ form_widget(form.programingLanguages, {'attr': {'class': 'nice-select rounded'}}) }}
                                 </div>
                             </div>
@@ -299,7 +294,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group app-label mt-2">
-                                    <label class="text-muted" for="description">Job Description</label>
+                                    <label class="text-muted" for="description">Description du poste</label>
                                     {{ form_widget(form.description, {'attr': {'class': 'form-control resume', 'rows': 6, 'placeholder': 'Enter job description'}}) }}
                                 </div>
                             </div>
@@ -307,7 +302,7 @@
 
                         <div class="row">
                             <div class="col-lg-12 mt-2">
-                                <button type="submit" class="btn btn-primary">Post a Job</button>
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
                             </div>
                         </div>
                         

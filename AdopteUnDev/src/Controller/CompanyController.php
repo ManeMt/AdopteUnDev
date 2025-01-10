@@ -27,7 +27,7 @@ final class CompanyController extends AbstractController{
     {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
-        $company->setUser($user);
+        // $company->setUser($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
