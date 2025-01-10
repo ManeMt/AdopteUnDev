@@ -30,6 +30,12 @@ class Location
     #[ORM\OneToMany(targetEntity: JobAdd::class, mappedBy: 'location', orphanRemoval: true)]
     private Collection $jobAdds;
 
+    /**
+     * @var Collection<int, Developer>
+     */
+    #[ORM\OneToMany(targetEntity: Developer::class, mappedBy: 'location', orphanRemoval: true)]
+    private Collection $developers;
+
     public function __construct()
     {
         $this->companies = new ArrayCollection();
@@ -112,4 +118,36 @@ class Location
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Developer>
+     */
+    public function getDeveloper(): Collection
+    {
+        return $this->developers;
+    }
+
+    public function addDeveloper(Developer $developer): static
+    {
+        if (!$this->developers->contains($developer)) {
+            $this->developers->add($developer);
+            $developer->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDeveloper(Developer $developer): static
+    {
+        if ($this->developers->removeElement($developer)) {
+            // set the owning side to null (unless already changed)
+            if ($developer->getLocation() === $this) {
+                $developer->setLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

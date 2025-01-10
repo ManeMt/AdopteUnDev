@@ -25,7 +25,8 @@
                             </p>
                         </div>
                         <div class="apply-button text-center mt-3">
-                            <a href="#" class="btn btn-primary btn-sm">Voir le profil</a>
+                            {# <a href="#" class="btn btn-primary btn-sm"></a> #}
+                             <a href="{{ path('app_developer_show', {'id': developer.id}) }}" class="btn btn-primary btn-sm">Voir le profil</a>
                         </div>
                     </div>
                 </div>

@@ -22,45 +22,45 @@ final class CompanyController extends AbstractController{
         ]);
     }
 
-    #[Route('/new', name: 'app_company_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $company = new Company();
-        $form = $this->createForm(CompanyType::class, $company);
-        // $company->setUser($user);
-        $form->handleRequest($request);
+    // #[Route('/new', name: 'app_company_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $company = new Company();
+    //     $form = $this->createForm(CompanyType::class, $company);
+    //     // $company->setUser($user);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            // Mettre à jour l'attribut completeProfile de l'utilisateur
+    //         // Mettre à jour l'attribut completeProfile de l'utilisateur
         
-            $logoFile = $this->fileUpload($form->get('logo')->getData());
-            $company->setLogo($logoFile);
-            $bannerFile = $this->fileUpload($form->get('banner')->getData());
-            $company->setLogo($bannerFile);
+    //         #$logoFile = $this->fileUpload($form->get('logo')->getData());
+    //         // $company->setLogo($logoFile);
+    //         // $bannerFile = $this->fileUpload($form->get('banner')->getData());
+    //         // $company->setLogo($bannerFile);
     
-            $imageFiles = $form->get('images')->getData();
-            $images = [];
-            foreach ($imageFiles as $key => $image) {
-                $images[] = $this->fileUpload($image);
+    //         // $imageFiles = $form->get('images')->getData();
+    //         // $images = [];
+    //         // foreach ($imageFiles as $key => $image) {
+    //         //     $images[] = $this->fileUpload($image);
 
-            }
-            if(count($images) > 0){
-                $company->setImages($images);
-            }
-            // $company->setLogo($logoFile);
-            $entityManager->flush();
-            $entityManager->persist($company);
-            $entityManager->flush();
+    //         // }
+    //         if(count($images) > 0){
+    //             $company->setImages($images);
+    //         }
+    //         // $company->setLogo($logoFile);
+    //         $entityManager->flush();
+    //         $entityManager->persist($company);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('companies/new.html.twig', [
-            'company' => $company,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('companies/new.html.twig', [
+    //         'company' => $company,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/company-createprofile', name: 'app_company-createprofile', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $em): Response
