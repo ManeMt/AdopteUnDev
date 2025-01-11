@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\JobAdd;
+use App\Entity\Company;
 use App\Form\JobAddType;
 use App\Repository\JobAddRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/job/add')]
 final class JobAddController extends AbstractController
@@ -28,7 +29,14 @@ final class JobAddController extends AbstractController
     {
         $user = $this->getUser(); // Récupère l'utilisateur connecté    
         $jobAdd = new JobAdd();
+
+        if (!$user instanceof Company) {
+            throw $this->createAccessDeniedException('Only companies can create job ads.');
+        }
+    
+        $jobAdd = new JobAdd();
         $jobAdd->setCompany($user);
+        // dd($jobAdd);
         $form = $this->createForm(JobAddType::class, $jobAdd);
         // $jobAdd->setCompany($userInterface->getCompanies());
         $form->handleRequest($request);
