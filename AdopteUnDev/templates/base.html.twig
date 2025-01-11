@@ -86,10 +86,15 @@
     {% if app.user %}
         <!-- Si l'utilisateur est connecté, afficher le bouton de déconnexion -->
         <li class="list-inline-item mr-3">
-            <a href="{{ is_granted('ROLE_COMPANY') ? path('company_dashboard') : path('developer_dashboard') }}" class="text-white">
+            {# <a href="{{ is_granted('ROLE_COMPANY') ? path('company_dashboard') : path('developer_dashboard') }}" class="text-white">
                 <i class="mdi mdi-account mr-2"></i>
                 {{ app.user ? app.user.userIdentifier : 'Guest' }}
-            </a>
+            </a> #}
+            <a href="{{ is_granted('ROLE_COMPANY') ? path('company_dashboard') : path('developer_dashboard') }}" class="text-white">
+    <i class="mdi mdi-account mr-2"></i>
+    {{ app.user ? app.user.userIdentifier : 'Guest' }}
+</a>
+
         </li>
         <li class="list-inline-item ml-3">
             <a href="{{ path('app_logout') }}" class="font-weight-bold" style="color: white;">Se déconnecter</a>
@@ -149,7 +154,15 @@
                         <!-- Navigation Menu-->   
                         <ul class="navigation-menu">
                             <li><a href="{{ path('home') }}">Accueil</a></li>
-                            <li><a href="{{ path('app_job_add_index') }}">Offres</a></li>
+                             {# <li class="has-submenu">
+                                <a href="javascript:void(0)">Offres</a><span class="menu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="{{ path('app_job_add_index') }}">Mes offres</a></li>
+                                    <li><a href="{{ path('app_job_add_new') }}">AJouter une offre</a></li>
+                                </ul>
+                    
+                            </li> #}
+                            <li><a href="{{ path('app_job_add_index') }}">Mes offres</a></li>
                              <li><a href="{{ path('app_company_index') }}">Entreprises</a></li>
                             <li><a href="{{ path('app_developer_index') }}">Développeurs</a></li>
 

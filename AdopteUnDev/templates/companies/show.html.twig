@@ -2,24 +2,24 @@
 
 {% block title %}Company Profile{% endblock %}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
-<div id="preloader">
-    <div id="status">
+{# <div id="preloader"> #}
+    {# <div id="status">
         <div class="spinner">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
-    </div>
-</div>
+    </div> #}
+{# </div> #}
 
-<header id="topnav" class="defaultscroll scroll-active">
+{# <header id="topnav" class="defaultscroll scroll-active">
     <div class="tagline">
         <div class="container">
             <div class="float-left">
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-</header>
+</header> #}
 
 <section class="bg-half page-next-level"> 
     <div class="bg-overlay"></div>
@@ -64,7 +64,7 @@
             <div class="col-md-6 text-center">
                 <img src="{{ asset('images/company-logo.png') }}" alt="Company Logo" class="img-fluid mb-4">
                 <h3>{{ company.name }}</h3>
-                <p class="text-muted">{{ company.industry }}</p>
+                {# <p class="text-muted">{{ company.industry }}</p> #}
             </div>
         </div>
 
@@ -110,8 +110,8 @@
 </section>
 {% endblock %}
 
-{% block javascripts %}
+{# {% block javascripts %}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-{% endblock %}
+{% endblock %} #}

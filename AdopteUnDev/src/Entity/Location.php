@@ -18,6 +18,11 @@ class Location
     #[ORM\Column(length: 255)]
     private ?string $entitled = null;
 
+    public function __toString(): string
+    {
+        return $this->entitled ?? '';
+    }
+
     /**
      * @var Collection<int, Company>
      */
