@@ -9,34 +9,32 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DeveloperRepository::class)]
-class Developer
+class Developer extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 40, nullable: true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $minSalary = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $level = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: 'integer', options: ["default" => 0])]
+    private int $numberView = 0;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
-    #[ORM\OneToOne(inversedBy: 'developer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    #[ORM\ManyToOne(inversedBy: 'developers')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Location $location = null;
 
     /**
      * @var Collection<int, ProgramingLanguage>
@@ -56,19 +54,12 @@ class Developer
         $this->yes = new ArrayCollection();
     }
 
-   
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -80,7 +71,7 @@ class Developer
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -92,11 +83,28 @@ class Developer
         return $this->minSalary;
     }
 
-    public function setMinSalary(float $minSalary): static
+    public function setMinSalary(?float $minSalary): static
     {
         $this->minSalary = $minSalary;
 
         return $this;
+    }
+
+    public function getNumberView(): ?int
+    {
+        return $this->numberView;
+    }
+
+    public function setNumberView(?int $numberView): static
+    {
+        $this->numberView = $numberView;
+
+        return $this;
+    }
+
+    public function incrementNumberView(): void
+    {
+        $this->numberView++;
     }
 
     public function getLevel(): ?int
@@ -104,7 +112,7 @@ class Developer
         return $this->level;
     }
 
-    public function setLevel(int $level): static
+    public function setLevel(?int $level): static
     {
         $this->level = $level;
 
@@ -116,7 +124,7 @@ class Developer
         return $this->biography;
     }
 
-    public function setBiography(string $biography): static
+    public function setBiography(?string $biography): static
     {
         $this->biography = $biography;
 
@@ -135,14 +143,13 @@ class Developer
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getLocation(): ?Location
     {
-        return $this->user;
+        return $this->location;
     }
-
-    public function setUser(User $user): static
+    public function setLocation(?Location $location): static
     {
-        $this->user = $user;
+        $this->location = $location;
 
         return $this;
     }
@@ -200,5 +207,4 @@ class Developer
 
         return $this;
     }
-
 }

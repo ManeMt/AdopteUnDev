@@ -1,0 +1,5 @@
+L'ensemble des commits de l'équipe se trouve sur la branche develop, seule le commit finale se trouve sur la branche main
+
+Executer la commande 
+php bin/console doctrine:fixtures:load
+Pour executer les jeux de données generes par symfony

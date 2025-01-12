@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Developer{% endblock %}
+
+{% block body %}
+    <h1>Create New Developer</h1>
+
+    {{ include('devs/_form.html.twig', { 'button_label': 'Create' }) }}
+
+    <a href="{{ path('app_developer_index') }}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

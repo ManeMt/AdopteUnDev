@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Company Profile{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="bg-half page-next-level"> 
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center text-white">
+                    <h4 class="text-uppercase title mb-4">Create Company Profile</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        {{ form_start(form, { 'attr': { 'enctype': 'multipart/form-data', 'class': 'form-horizontal' } }) }}
+        
+        <div class="row">
+            <div class="form-group col-md-6">
+                    {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter company name'}}) }}
+            </div>
+            <div class="form-group col-md-6">
+                {{ form_label(form.sector) }}
+                {{ form_widget(form.sector, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        
+
+        <!-- Contact Information -->
+        <div class="row">
+                <div class="form-group  col-lg-4">
+                    {{ form_label(form.contact) }}
+                    {{ form_widget(form.contact, {'attr': {'class': 'form-control', 'placeholder': 'Enter contact information'}}) }}
+                </div>
+
+                <div class="form-group col-lg-4">
+                    {{ form_label(form.location) }}
+                    {{ form_widget(form.location, {'attr': {'class': 'form-control', 'placeholder': 'Enter location'}}) }}
+                </div>
+                <div class="form-group  col-lg-4">
+                    {{ form_label(form.website) }}
+                    {{ form_widget(form.website, {'attr': {'class': 'form-control', 'placeholder': 'Enter website URL'}}) }}
+                </div>
+        </div>
+         <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ form_label(form.logo) }}
+                    {{ form_widget(form.logo, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ form_label(form.banner) }}
+                    {{ form_widget(form.banner, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    {{ form_label(form.images) }}
+                    {{ form_widget(form.images, {'attr': {'class': 'form-control', 'multiple': true}}) }}
+                </div>
+            </div>
+        </div>
+    <!-- Company Details -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Enter a brief description'}}) }}
+                </div>
+            </div>
+        </div>
+        <!-- Gallery -->
+        
+           
+        
+   
+        <div class="row mt-4">
+            <div class="col-lg-12 text-center">
+                <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}

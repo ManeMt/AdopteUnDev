@@ -9,20 +9,15 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-class Company
+class Company extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $logo = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $banner = null;
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
@@ -31,18 +26,18 @@ class Company
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $contact = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'companies')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Sector $sector = null;
 
     #[ORM\ManyToOne(inversedBy: 'companies')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Location $location = null;
 
     /**
@@ -56,17 +51,12 @@ class Company
         $this->jodAdds = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(?string $name): static
     {
         $this->name = $name;
 
@@ -90,7 +80,7 @@ class Company
         return $this->banner;
     }
 
-    public function setBanner(string $banner): static
+    public function setBanner(?string $banner): static
     {
         $this->banner = $banner;
 
@@ -126,7 +116,7 @@ class Company
         return $this->contact;
     }
 
-    public function setContact(string $contact): static
+    public function setContact(?string $contact): static
     {
         $this->contact = $contact;
 
@@ -138,7 +128,7 @@ class Company
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -198,8 +188,4 @@ class Company
 
         return $this;
     }
-    public function getJodAddssssss(): Collection
-    {
-        
-}
 }

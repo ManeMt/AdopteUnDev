@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Entreprises{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Liste des Entreprises</h2>
+        <div class="row">
+            {% for company in companies %}
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="employers-list position-relative pb-3 pt-3 pl-2 pr-2 border rounded">
+                        <!-- Logo circulaire -->
+                        <img src="{{ asset('uploads/' company.logo) }}" alt="Logo" class="logo-circle mx-auto d-block shadow border">
+                        <div class="grid-list-desc text-center mt-3">
+                            <h5 class="mb-2">
+                                <a href="{{ path('app_company_show', {'id': company.id}) }}" class="text-dark name">
+                                    {{ company.name }}
+                                </a>
+                            </h5>
+                            <p class="text-muted mb-0">
+                                <i class="mdi mdi-web"></i> 
+                                <a href="{{ company.website }}" target="_blank">{{ company.website }}</a>
+                            </p>
+                            <p class="text-muted mb-0">
+                                <i class="mdi mdi-map-marker"></i> 
+                                {{ company.location ? company.location.entitled : 'Non spécifié' }}
+                            </p>
+                            <p class="text-muted mt-2">
+                                {{ company.description|length > 100 ? company.description[:100] ~ '...' : company.description }}
+                            </p>
+                        </div>
+                        <div class="apply-button text-center mt-3">
+                            <a href="{{ path('app_company_show', {'id': company.id}) }}" class="btn btn-primary btn-sm">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p class="text-center">Aucune entreprise trouvée.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

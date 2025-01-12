@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Développeurs{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Liste des Développeurs</h2>
+        <div class="row mt-4">
+            {% for developer in developers %}
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="employers-list position-relative pb-3 pt-3 pl-2 pr-2 border rounded">
+                        <!-- Avatar circulaire -->
+                        <img src="{{ asset('uploads/' ~ developer.avatar) }}" alt="Avatar" class="avatar-circle mx-auto d-block shadow border">
+                        <div class="grid-list-desc text-center mt-3">
+                            <h5 class="mb-2">
+                                <a href="#" class="text-dark name">{{ developer.firstName }} {{ developer.lastName }}</a>
+                            </h5>
+                            <p class="text-muted mb-0">Nombre de vues : {{ developer.numberView }}</p>
+                            <p class="text-muted mb-0">
+                                Compétences :
+                                {% for skill in developer.programingLanguages %}
+                                    {{ skill.entitled }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="apply-button text-center mt-3">
+                            {# <a href="#" class="btn btn-primary btn-sm"></a> #}
+                             <a href="{{ path('app_developer_show', {'id': developer.id}) }}" class="btn btn-primary btn-sm">Voir le profil</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p class="text-center">Aucun développeur trouvé.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
