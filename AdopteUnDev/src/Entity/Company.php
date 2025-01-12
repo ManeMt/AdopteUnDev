@@ -188,4 +188,22 @@ class Company extends User
 
         return $this;
     }
+
+    public function getTotalViews(): int
+    {
+        $totalViews = 0;
+
+        foreach ($this->jodAdds as $jobAdd) {
+            $totalViews += $jobAdd->getNumberView();
+        }
+
+        return $totalViews;
+    }
+
+    public function getNumberOfJobAdds(): int
+    {
+        return $this->jodAdds->count();
+    }
+
 }
+

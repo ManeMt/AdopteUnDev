@@ -106,4 +106,9 @@ class ProgramingLanguage
 
         return $this;
     }
+    // Add this method
+    public function __toString(): string
+    {
+        return $this->getEntitled();
+    }
 }

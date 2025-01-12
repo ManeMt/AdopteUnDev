@@ -112,13 +112,7 @@ final class CompanyController extends AbstractController{
     public function resume (): Response
     {
             // Données simulées pour l'entreprise
-            $data = [
-                'views' => 220, // Nombre de vues des fiches de poste
-                'topJobs' => [
-                    ['title' => 'Full-Stack Developer', 'views' => 180],
-                    ['title' => 'Frontend Engineer', 'views' => 150],
-                ],
-            ];
+            $data = $this->getUser();
     
             return $this->render('companies/dashboard.html.twig', [
                 'data' => $data,

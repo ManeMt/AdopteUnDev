@@ -101,19 +101,19 @@
         </li>
     {% else %}
         <!-- Si l'utilisateur n'est pas connecté, afficher le sélecteur de langue et le lien de connexion -->
-        <li class="list-inline-item">
+        {# <li class="list-inline-item">
             <select id="select-lang" class="demo-default" onchange="location = this.value;">
                 <option value="" disabled selected>S'inscrire</option>
                 <option value="{{ path('app_company_register') }}">Entreprise</option>
                 <option value="{{ path('app_dev_register') }}">Développeur</option>
             </select>
-        </li>
+        </li> #}
 
         <li class="list-inline-item ml-3">
-            <p class="mb-0 mt-1" style="color: white;">
-                <small class="mr-2">J'ai déjà un compte</small> 
+            {# <p class="mb-0 mt-1" style="color: white;"> #}
+                {# <small class="mr-2">J'ai déjà un compte</small>  #}
                 <a href="{{ path('app_login') }}" class="font-weight-bold" style="color: white;">Se connecter</a>
-            </p>
+            {# </p> #}
         </li>
     {% endif %}
 </ul>

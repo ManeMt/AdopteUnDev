@@ -67,13 +67,7 @@ final class DeveloperController extends AbstractController{
             public function ex(): Response
             {
                 // Données simulées pour le développeur
-                $data = [
-                    'views' => 120, // Nombre de vues du profil
-                    'topProfiles' => [
-                        ['name' => 'John Doe', 'views' => 340],
-                        ['name' => 'Jane Smith', 'views' => 300],
-                    ],
-                ];
+                $data = $this->getUser();
         
                 return $this->render('devs/dashboard.html.twig', [
                     'data' => $data,
