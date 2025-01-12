@@ -22,17 +22,17 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <a href="#" class="d-flex justify-content-between align-items-center text-muted">
-                                                Vues des offres <span class="badge badge-primary">220</span>
+                                                Vues des offres <span class="badge badge-primary">{{data.getTotalViews()}}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" class="d-flex justify-content-between align-items-center text-muted">
-                                                Candidatures reçues <span class="badge badge-primary">80</span>
+                                                Candidatures reçues <span class="badge badge-primary">--</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" class="d-flex justify-content-between align-items-center text-muted">
-                                                Offres publiées <span class="badge badge-primary">10</span>
+                                                Offres publiées <span class="badge badge-primary">{{data.getTotalViews()}}</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -72,7 +72,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Vues des offres</h5>
-                                <h2>220</h2>
+                                <h2>{{data.getTotalViews()}}</h2>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Candidatures reçues</h5>
-                                <h2>80</h2>
+                                <h2>--</h2>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Offres publiées</h5>
-                                <h2>10</h2>
+                                <h2>{{data.getTotalViews()}}</h2>
                             </div>
                         </div>
                     </div>
